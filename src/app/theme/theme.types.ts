@@ -13,4 +13,5 @@ export interface Palette {
   surface: ColorValue;
   border: ColorValue;
   tabBar: ColorValue;
+  onPrimary: ColorValue;
 }
