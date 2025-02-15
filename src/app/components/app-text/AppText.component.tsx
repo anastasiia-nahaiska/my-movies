@@ -5,7 +5,7 @@ import { styles } from './app-text.styles';
 import { Typography } from './typography.types';
 import { usePalette } from '@theme/usePalette.hook';
 
-interface AppTextProps extends TextProps {
+export interface AppTextProps extends TextProps {
   typography?: Typography;
 }
 
