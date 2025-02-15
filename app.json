@@ -28,6 +28,15 @@
           "image": "./src/assets/images/splash-icon.png",
           "imageWidth": 256
         }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./src/assets/fonts/OpenSans-Regular.ttf",
+            "./src/assets/fonts/OpenSans-SemiBold.ttf"
+          ]
+        }
       ]
     ],
     "experiments": {
