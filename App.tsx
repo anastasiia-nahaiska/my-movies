@@ -5,7 +5,7 @@ import { hideAsync, preventAutoHideAsync } from 'expo-splash-screen';
 
 import { Theme } from '@theme/theme.types';
 import { ThemeProvider } from '@theme/theme.provider';
-import { Text } from '@components/text/Text.component';
+import { ThemedText } from '@components/themed-text/ThemedText.component';
 
 preventAutoHideAsync();
 
@@ -21,8 +21,8 @@ export default function App() {
   return (
     <ThemeProvider theme={Appearance.getColorScheme() === 'dark' ? Theme.Dark : Theme.Light}>
       <SafeAreaProvider style={styles.container}>
-        <Text style={{ fontFamily: 'OpenSans-Regular' }}>Hello World!</Text>
-        <Text style={{ fontFamily: 'OpenSans-SemiBold' }}>Hello World!</Text>
+        <ThemedText style={{ fontFamily: 'OpenSans-Regular' }}>Hello World!</ThemedText>
+        <ThemedText style={{ fontFamily: 'OpenSans-SemiBold' }}>Hello World!</ThemedText>
       </SafeAreaProvider>
     </ThemeProvider>
   );
