@@ -4,7 +4,6 @@ import { Palette } from '@theme/theme.types';
 
 import { MainButtonType } from './MainButton.component';
 
-
 export const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
