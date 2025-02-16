@@ -19,7 +19,7 @@ export const darkPalette: Palette = {
   text: '#FFFFFF',
   secondaryText: '#F5F3F4',
   disabledText: '#b2a9a9',
-  surface: '#473f3e',
+  surface: '#1E1E1E',
   border: '#676262',
   tabBar: '#2c1f1f',
   onPrimary: '#fff',

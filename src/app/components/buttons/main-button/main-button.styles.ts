@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import { Palette } from '@theme/theme.types';
 
-import { MainButtonType } from './MainButton.component';
+import { MainButtonType } from './main-button.types';
 
 export const styles = StyleSheet.create({
   container: {

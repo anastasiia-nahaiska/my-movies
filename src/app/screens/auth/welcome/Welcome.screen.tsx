@@ -6,8 +6,8 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import lottie from '@assets/lotties/welcome.json';
 import { AppText, Typography } from '@components/app-text';
 import { useLocalization } from '@localization/useLocalization.hook';
+import { MainButtonType, MainButton } from '@components/buttons/main-button';
 import { AuthSackParamList, AuthStackRoutes } from '@navigation/auth-stack/auth-stack.routes';
-import { MainButton, MainButtonType } from '@components/buttons/main-button/MainButton.component';
 
 import { styles } from './welcome.styles';
 

@@ -4,12 +4,8 @@ import { StyleProp, TextStyle, TouchableOpacity, TouchableOpacityProps } from 'r
 import { usePalette } from '@theme/usePalette.hook';
 import { AppText, Typography } from '@components/app-text';
 
+import { MainButtonType } from './main-button.types';
 import { getMainButtonContainerStyle, getMainButtonTitleColor, styles } from './main-button.styles';
-
-export enum MainButtonType {
-  Primary = 'primary',
-  Outlined = 'outlined',
-}
 
 interface MainButtonProps extends TouchableOpacityProps {
   title: string;

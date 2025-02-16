@@ -15,6 +15,9 @@
   "settings": "Settings",
   "password": "Password",
   "confirmPassword": "Confirm password",
+  "english": "English",
+  "signOut": "sign out",
+  "darkTheme": "Dark theme",
   "welcome": {
     "title": "Welcome, Movie Buff!",
     "subtitle": " Your cinematic journey begins here",

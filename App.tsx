@@ -1,39 +1,34 @@
 import { useEffect } from 'react';
-import { StyleSheet, Appearance } from 'react-native';
+import { Provider } from 'react-redux';
+import { Appearance } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { hide, preventAutoHideAsync } from 'expo-splash-screen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { hideAsync, preventAutoHideAsync } from 'expo-splash-screen';
 
 import { Theme } from '@theme/theme.types';
+import { rootStore } from '@store/root-store';
 import { ThemeProvider } from '@theme/theme.provider';
-import { AppText } from '@components/app-text/AppText.component';
-import { PrimaryButton } from '@components/buttons/primary-button/PrimaryButton.component';
+import { AppStack } from '@navigation/AppStack.navigation';
+import { LocalizationProvider } from '@app/localization/LocalizationProvider.context';
 
 preventAutoHideAsync();
 
-const SPLASH_SCREEN_DELAY = 2000;
-
 export default function App() {
   useEffect(() => {
-    setTimeout(async () => {
-      await hideAsync();
-    }, SPLASH_SCREEN_DELAY);
+    hide();
   }, []);
 
   return (
-    <ThemeProvider theme={Appearance.getColorScheme() === 'dark' ? Theme.Dark : Theme.Light}>
-      <SafeAreaProvider style={[styles.container, { backgroundColor: '#0B090A' }]}>
-        <AppText style={{ fontFamily: 'OpenSans-Regular' }}>Hello World!</AppText>
-        <AppText style={{ fontFamily: 'OpenSans-SemiBold' }}>Hello World!</AppText>
-        <PrimaryButton title="Sign In" />
+    <Provider store={rootStore}>
+      <SafeAreaProvider>
+        <LocalizationProvider>
+          <ThemeProvider theme={Appearance.getColorScheme() === 'dark' ? Theme.Dark : Theme.Light}>
+            <NavigationContainer>
+              <AppStack />
+            </NavigationContainer>
+          </ThemeProvider>
+        </LocalizationProvider>
       </SafeAreaProvider>
-    </ThemeProvider>
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    // alignItems: 'center',
-  },
-});

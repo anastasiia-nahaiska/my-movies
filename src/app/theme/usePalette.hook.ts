@@ -9,3 +9,9 @@ export const usePalette = (): Palette => {
 
   return theme === Theme.Dark ? darkPalette : lightPalette;
 };
+
+export const useTheme = () => {
+  const theme = useContext(ThemeContext);
+
+  return theme;
+};
