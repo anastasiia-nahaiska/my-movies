@@ -18,7 +18,7 @@ export const SignIn: React.FC<NativeStackScreenProps<AuthSackParamList, AuthStac
   const onSubmit = async (email: string, password: string) => {
     try {
       await authService.signIn(email, password);
-      navigation.dispatch(CommonActions.reset({ routes: [{ name: AppStackRoutes.BottomTabs }], index: 0 }));
+      navigation.dispatch(CommonActions.reset({ routes: [{ name: AppStackRoutes.MainStack }], index: 0 }));
     } catch (e) {
       throw new Error(`${e}`);
     }
