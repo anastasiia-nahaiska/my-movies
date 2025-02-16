@@ -1,6 +1,6 @@
 import { MMKV } from 'react-native-mmkv';
 
-export class Memory {
+class Memory {
   private storage = new MMKV();
 
   public setItem<T>(key: string, value: T) {
@@ -20,3 +20,5 @@ export class Memory {
     return typeof data === 'string' ? (JSON.parse(data) as T) : null;
   }
 }
+
+export const memory = new Memory();

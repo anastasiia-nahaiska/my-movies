@@ -1,6 +1,9 @@
 import axios, { HttpStatusCode, type AxiosInstance, type AxiosRequestConfig } from 'axios';
 
-import { AnyJson } from '@app/types/common-types';
+// import { rootStore } from '@store/root-store';
+import { AnyJson } from '@app/types/common.types';
+import { ErrorCode } from '@app/types/statuses.types';
+// import { sessionSlice } from '@store/slices/session.slice';
 
 export interface RequestConfig {
   auth?: { username: string; password: string };
@@ -12,7 +15,7 @@ export interface Headers {
   [header: string]: string | number;
 }
 
-export class Http {
+class Http {
   private baseURL: string;
   private headers: Headers;
   private axiosInstance: AxiosInstance;
@@ -20,12 +23,8 @@ export class Http {
   public constructor(baseURL: string = '', headers: Headers = {}) {
     this.baseURL = baseURL;
     this.headers = headers;
-    this.axiosInstance = axios.create({ baseURL, headers });
-  }
 
-  public setBaseURL(baseURL: string) {
-    this.baseURL = baseURL;
-    this.createAxiosInstance();
+    this.axiosInstance = axios.create({ baseURL, headers });
   }
 
   public addBearerToken(token: string) {
@@ -66,14 +65,25 @@ export class Http {
     this.axiosInstance = axios.create({ baseURL: this.baseURL, headers: this.headers });
 
     this.axiosInstance.interceptors.response.use(
-      response => response,
+      response => {
+        if (response.data?.error?.code === ErrorCode.WRONG_TOKEN) {
+          // Todo: Uncomment after BE fix
+          // rootStore.dispatch(sessionSlice.actions.expireSession());
+        }
+        return response;
+      },
       async error => {
         const originalRequest = error.config;
 
         if ([HttpStatusCode.Unauthorized, HttpStatusCode.Forbidden].includes(error.response?.status) && !originalRequest._retry) {
-          throw new Error('Session expired');
+          // Todo: Uncomment after BE fix
+          // rootStore.dispatch(sessionSlice.actions.expireSession());
         }
+
+        return Promise.reject(error);
       },
     );
   }
 }
+
+export const http = new Http(process.env.EXPO_PUBLIC_API_URL);
