@@ -1,8 +1,19 @@
 {
+  "invalidEmail": "Invalid email address",
+  "email": "Email",
+  "password": "Password",
   "welcome": {
     "title": "Welcome, Movie Buff!",
     "subtitle": " Your cinematic journey begins here",
     "signIn": "Sign In",
     "signUp": "Sign Up"
+  },
+  "signIn": {
+    "title": "Sign In",
+    "button": "Continue"
+  },
+  "signUp": {
+    "title": "Sign Up",
+    "button": "Create account"
   }
 }

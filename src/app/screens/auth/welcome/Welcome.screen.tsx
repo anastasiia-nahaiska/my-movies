@@ -11,7 +11,7 @@ import { MainButton, MainButtonType } from '@components/buttons/main-button/Main
 
 import { styles } from './welcome.styles';
 
-export const Welcome: React.FC<NativeStackScreenProps<AuthSackParamList, AuthStackRoutes>> = ({ navigation }) => {
+export const Welcome: React.FC<NativeStackScreenProps<AuthSackParamList, AuthStackRoutes.Welcome>> = ({ navigation }) => {
   const { t } = useLocalization();
 
   const navigateToSignIn = () => navigation.navigate(AuthStackRoutes.SignIn);
