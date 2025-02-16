@@ -1,14 +1,12 @@
-import { Http } from '@config/http';
-import { Memory } from '@config/memory';
-import { injector } from '@config/injector';
+import { http } from '@config/http';
+import { memory } from '@config/memory';
+import { rootStore } from '@store/root-store';
+import { sessionSlice } from '@store/slices/session.slice';
 
 import { CreateUserRequest, SessionResponse } from './auth.dto';
 
 export class AuthService {
   private readonly accessTokenKey = 'ACCESS_TOKEN';
-
-  private readonly http = injector.get(Http);
-  private readonly memory = injector.get(Memory);
 
   private accessToken: string | null = null;
 
@@ -22,10 +20,10 @@ export class AuthService {
 
   public async signUp(params: CreateUserRequest) {
     try {
-      const res = await this.http.post<SessionResponse>('/users', { ...params });
+      const res = await http.post<SessionResponse>('/users', { ...params });
 
       if (res.data.token) {
-        this.initializeAccessToken(res.data.token);
+        this.initializeSessionWithAccessToken(res.data.token);
       }
     } catch (e) {
       throw new Error(`${e}`);
@@ -34,9 +32,11 @@ export class AuthService {
 
   public async signIn(email: string, password: string) {
     try {
-      const res = await this.http.post<SessionResponse>('/sessions', { email, password });
+      const res = await http.post<SessionResponse>('/sessions', { email, password });
 
-      this.initializeAccessToken(res.data.token);
+      if (res.data.token) {
+        this.initializeSessionWithAccessToken(res.data.token);
+      }
     } catch (e) {
       throw new Error(`${e}`);
     }
@@ -45,12 +45,17 @@ export class AuthService {
   public signOut() {
     this.accessToken = null;
 
-    this.memory.clear();
-    this.http.cleanHeaders();
+    memory.clear();
+    http.cleanHeaders();
+  }
+
+  private initializeSessionWithAccessToken(accessToken: string) {
+    rootStore.dispatch(sessionSlice.actions.startSession());
+    this.initializeAccessToken(accessToken);
   }
 
   private initializeAccessToken(accessToken: string) {
-    this.http.addBearerToken(accessToken);
+    http.addBearerToken(accessToken);
     this.saveAccessTokenToMemory(accessToken);
 
     this.accessToken = accessToken;
@@ -60,16 +65,16 @@ export class AuthService {
     const accessToken = this.getAccessTokenFromMemory();
 
     if (accessToken) {
-      this.http.addBearerToken(accessToken);
+      http.addBearerToken(accessToken);
       this.accessToken = accessToken;
     }
   }
 
   private getAccessTokenFromMemory() {
-    return this.memory.getItem<string>(this.accessTokenKey);
+    return memory.getItem<string>(this.accessTokenKey);
   }
 
   private saveAccessTokenToMemory(accessToken: string) {
-    return this.memory.setItem<string>(this.accessTokenKey, accessToken);
+    return memory.setItem<string>(this.accessTokenKey, accessToken);
   }
 }

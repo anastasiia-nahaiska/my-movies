@@ -1,7 +1,7 @@
-import { StatusCode } from '@app/types/statuses';
+import { ResponseStatus } from '@app/types/statuses.types';
 
 export interface SessionResponse {
-  status: StatusCode;
+  status: ResponseStatus;
   token: string;
 }
 
