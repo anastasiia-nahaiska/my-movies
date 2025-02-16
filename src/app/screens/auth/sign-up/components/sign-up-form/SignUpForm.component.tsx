@@ -14,6 +14,7 @@ import {
 } from '@components/wrappers/keyboard-aware-scroll-view/KeyboardAwareScrollView.component';
 
 import { styles } from './sign-up-form.styles';
+import { CreateUserRequest } from '@services/auth/auth.dto';
 
 enum SignUpField {
   Name = 'Name',
@@ -30,7 +31,7 @@ interface Form {
 }
 
 interface SignUpFormProps extends KeyboardAwareScrollViewProps {
-  onSubmitPress: (email: string, password: string) => void;
+  onSubmitPress: (params: CreateUserRequest) => void;
 }
 
 export const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmitPress, contentContainerStyle, ...props }) => {
@@ -67,7 +68,12 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmitPress, contentCo
     const values = getValues();
 
     Keyboard.dismiss();
-    onSubmitPress(values[SignUpField.Email], values[SignUpField.Password]);
+    onSubmitPress({
+      name: values[SignUpField.Name],
+      email: values[SignUpField.Email],
+      password: values[SignUpField.Password],
+      confirmPassword: values[SignUpField.ConfirmPassword],
+    });
   }, [onSubmitPress]);
 
   const submitFormWithValidation = useCallback(handleSubmit(submitForm), [submitForm]);
