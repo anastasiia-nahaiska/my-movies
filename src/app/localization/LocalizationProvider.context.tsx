@@ -1,9 +1,7 @@
 import React, { createContext, PropsWithChildren, useRef, useState } from 'react';
 
+import { injector } from '@config/injector';
 import { LanguageCode, LocalizationService, TranslateFunc } from '@localization/localization.service';
-
-import en from './locales/en.json';
-import uk from './locales/uk.json';
 
 interface LocalizationContextType {
   language: LanguageCode;
@@ -18,15 +16,7 @@ export const LocalizationContext = createContext<LocalizationContextType>({
 });
 
 export const LocalizationProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const localizationService = useRef(
-    new LocalizationService({
-      fallbackLng: LanguageCode.EN,
-      resources: {
-        [LanguageCode.EN]: { translation: en },
-        [LanguageCode.UK]: { translation: uk },
-      },
-    }),
-  );
+  const localizationService = useRef(injector.get(LocalizationService));
 
   const [language, setLanguage] = useState(localizationService.current.language);
 

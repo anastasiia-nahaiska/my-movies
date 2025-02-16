@@ -2,7 +2,11 @@ import { getLocales } from 'expo-localization';
 import { initReactI18next } from 'react-i18next';
 import { changeLanguage as i18nextChangeLanguage, use, t as i18nextTranslation } from 'i18next';
 
-import { memory } from '@config/memory';
+import { Memory } from '@config/memory';
+import { injector } from '@config/injector';
+
+import en from './locales/en.json';
+import uk from './locales/uk.json';
 
 type ResourceKey = string | { [key: string]: ResourceKey };
 
@@ -24,7 +28,9 @@ export interface LangOptions {
 }
 
 export class LocalizationService {
-  private readonly CURRENT_LANGUAGE_KEY = 'CURRENT_LANGUAGE';
+  private readonly currentLanguageKey = 'CURRENT_LANGUAGE';
+
+  private readonly memory = injector.get(Memory);
 
   private readonly translate = i18nextTranslation;
 
@@ -34,12 +40,16 @@ export class LocalizationService {
     return this.currentLanguage;
   }
 
-  public constructor(options: LangOptions) {
+  public constructor() {
     this.currentLanguage = this.getCurrentLanguageFromMemory() ?? (getLocales()[0].languageCode as LanguageCode);
 
     use(initReactI18next).init({
       lng: this.currentLanguage,
-      ...options,
+      fallbackLng: LanguageCode.EN,
+      resources: {
+        [LanguageCode.EN]: { translation: en },
+        [LanguageCode.UK]: { translation: uk },
+      },
     });
   }
 
@@ -52,7 +62,7 @@ export class LocalizationService {
     this.saveLanguageToMemory(langCode);
   };
 
-  private readonly getCurrentLanguageFromMemory = () => memory.getItem<LanguageCode>(this.CURRENT_LANGUAGE_KEY);
+  private readonly getCurrentLanguageFromMemory = () => this.memory.getItem<LanguageCode>(this.currentLanguageKey);
 
-  private readonly saveLanguageToMemory = (langCode: LanguageCode) => memory.setItem(this.CURRENT_LANGUAGE_KEY, langCode);
+  private readonly saveLanguageToMemory = (langCode: LanguageCode) => this.memory.setItem(this.currentLanguageKey, langCode);
 }
