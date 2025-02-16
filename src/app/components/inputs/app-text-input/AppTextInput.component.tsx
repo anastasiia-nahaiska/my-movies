@@ -1,7 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useState } from 'react';
+import Animated, { useSharedValue, useAnimatedStyle, interpolateColor, withTiming } from 'react-native-reanimated';
 import { NativeSyntheticEvent, TextInput, StyleProp, TextInputFocusEventData, TextInputProps, View, ViewStyle } from 'react-native';
-import Animated, { useSharedValue, useAnimatedStyle, interpolateColor, withTiming, LinearTransition } from 'react-native-reanimated';
 
 import { Typography } from '@components/app-text';
 import { usePalette } from '@theme/usePalette.hook';
@@ -17,23 +17,21 @@ enum EyeIconName {
   Off = 'eye-off',
 }
 
-interface Props extends TextInputProps {
+export interface AppTextInputProps extends TextInputProps {
   type?: InputType;
   errorMessage?: string;
   typography?: Typography;
-  showClearButton?: boolean;
   containerStyle?: StyleProp<ViewStyle>;
   textInputContainerStyle?: StyleProp<ViewStyle>;
 
   onClear?: () => void;
 }
 
-export const AppTextInput = React.forwardRef<TextInput, Props>(
+export const AppTextInput = React.forwardRef<TextInput, AppTextInputProps>(
   (
     {
       type = 'text',
       errorMessage = '',
-      showClearButton = false,
       textInputContainerStyle,
       typography = Typography.Body,
 
@@ -95,29 +93,24 @@ export const AppTextInput = React.forwardRef<TextInput, Props>(
     const changeVisibility = useCallback(() => setIsVisibleText(isVisible => !isVisible), []);
 
     return (
-      <Animated.View layout={LinearTransition}>
-        <View style={containerStyle}>
-          <Animated.View style={[styles.textInputContainer, borderAnimatedStyle, textInputContainerStyle]}>
-            {type === 'search' && <Ionicons name="search" size={24} color={border} />}
-            <TextInput
-              ref={ref}
-              placeholderTextColor={disabledText}
-              secureTextEntry={!isVisibleText}
-              style={[textStyles[typography], { color: text }, styles.textInput, style]}
-              {...props}
-              onBlur={handleBlurInput}
-              onFocus={handleFocusInput}
-            />
-            {type === 'password' && (
-              <IconButton icon={<Ionicons name={visibilityIconName} size={24} color={border} />} hitSlop={16} onPress={changeVisibility} />
-            )}
-            {showClearButton && (
-              <IconButton icon={<Ionicons name="close-circle-outline" size={24} color={border} />} hitSlop={16} onPress={onClear} />
-            )}
-          </Animated.View>
-          {isError && <ErrorMessage style={styles.error} errorMessage={errorMessage} />}
-        </View>
-      </Animated.View>
+      <View style={containerStyle}>
+        <Animated.View style={[styles.textInputContainer, borderAnimatedStyle, textInputContainerStyle]}>
+          {type === 'search' && <Ionicons name="search" size={24} color={border} />}
+          <TextInput
+            ref={ref}
+            placeholderTextColor={disabledText}
+            secureTextEntry={!isVisibleText}
+            style={[textStyles[typography], { color: text }, styles.textInput, style]}
+            {...props}
+            onBlur={handleBlurInput}
+            onFocus={handleFocusInput}
+          />
+          {type === 'password' && (
+            <IconButton icon={<Ionicons name={visibilityIconName} size={24} color={border} />} hitSlop={16} onPress={changeVisibility} />
+          )}
+        </Animated.View>
+        {isError && <ErrorMessage style={styles.error} errorMessage={errorMessage} />}
+      </View>
     );
   },
 );

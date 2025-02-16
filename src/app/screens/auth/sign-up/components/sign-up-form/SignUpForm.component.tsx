@@ -6,7 +6,6 @@ import { useForm, ControllerProps, Controller } from 'react-hook-form';
 
 import { useLocalization } from '@localization/useLocalization.hook';
 import { MainButton } from '@components/buttons/main-button/MainButton.component';
-import { AppTextInput } from '@components/inputs/app-text-input/AppTextInput.component';
 import { EMAIL_REGEX, NAME_REGEX, NO_SPACES_REGEX, PASSWORD_MIN_MAX_REGEX } from '@utils/constants/regexes';
 import {
   KeyboardAwareScrollView,
@@ -15,6 +14,7 @@ import {
 
 import { styles } from './sign-up-form.styles';
 import { CreateUserRequest } from '@services/auth/auth.dto';
+import { AnimatedAppTextInput } from '@components/inputs/animated-app-text-input/AnimatedAppTextInput.component';
 
 enum SignUpField {
   Name = 'Name',
@@ -80,28 +80,34 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmitPress, contentCo
 
   const renderNameInput: ControllerProps<Form, SignUpField.Name>['render'] = useCallback(
     ({ field, fieldState }) => (
-      <AppTextInput {...field} onChangeText={field.onChange} errorMessage={fieldState.error?.message} placeholder={t('name')} />
+      <AnimatedAppTextInput {...field} onChangeText={field.onChange} errorMessage={fieldState.error?.message} placeholder={t('name')} />
     ),
     [],
   );
 
   const renderEmailInput: ControllerProps<Form, SignUpField.Email>['render'] = useCallback(
     ({ field, fieldState }) => (
-      <AppTextInput {...field} onChangeText={field.onChange} errorMessage={fieldState.error?.message} placeholder={t('email')} />
+      <AnimatedAppTextInput {...field} onChangeText={field.onChange} errorMessage={fieldState.error?.message} placeholder={t('email')} />
     ),
     [],
   );
 
   const renderPasswordInput: ControllerProps<Form, SignUpField.Password>['render'] = useCallback(
     ({ field, fieldState }) => (
-      <AppTextInput {...field} onChangeText={field.onChange} errorMessage={fieldState.error?.message} type="password" placeholder={t('password')} />
+      <AnimatedAppTextInput
+        {...field}
+        onChangeText={field.onChange}
+        errorMessage={fieldState.error?.message}
+        type="password"
+        placeholder={t('password')}
+      />
     ),
     [],
   );
 
   const renderConfirmPasswordInput: ControllerProps<Form, SignUpField.ConfirmPassword>['render'] = useCallback(
     ({ field, fieldState }) => (
-      <AppTextInput
+      <AnimatedAppTextInput
         {...field}
         onChangeText={field.onChange}
         errorMessage={fieldState.error?.message}

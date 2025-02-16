@@ -7,13 +7,13 @@ import { useForm, ControllerProps, Controller } from 'react-hook-form';
 import { EMAIL_REGEX } from '@utils/constants/regexes';
 import { useLocalization } from '@localization/useLocalization.hook';
 import { MainButton } from '@components/buttons/main-button/MainButton.component';
-import { AppTextInput } from '@components/inputs/app-text-input/AppTextInput.component';
 import {
   KeyboardAwareScrollView,
   KeyboardAwareScrollViewProps,
 } from '@components/wrappers/keyboard-aware-scroll-view/KeyboardAwareScrollView.component';
 
 import { styles } from './sign-in-form.styles';
+import { AnimatedAppTextInput } from '@components/inputs/animated-app-text-input/AnimatedAppTextInput.component';
 
 enum SignInField {
   Email = 'Email',
@@ -61,14 +61,20 @@ export const SignInForm: React.FC<SignInFormProps> = ({ onSubmitPress, contentCo
 
   const renderEmailInput: ControllerProps<Form, SignInField.Email>['render'] = useCallback(
     ({ field, fieldState }) => (
-      <AppTextInput {...field} onChangeText={field.onChange} errorMessage={fieldState.error?.message} placeholder={t('email')} />
+      <AnimatedAppTextInput {...field} onChangeText={field.onChange} errorMessage={fieldState.error?.message} placeholder={t('email')} />
     ),
     [],
   );
 
   const renderPasswordInput: ControllerProps<Form, SignInField.Password>['render'] = useCallback(
     ({ field, fieldState }) => (
-      <AppTextInput {...field} onChangeText={field.onChange} errorMessage={fieldState.error?.message} type="password" placeholder={t('password')} />
+      <AnimatedAppTextInput
+        {...field}
+        onChangeText={field.onChange}
+        errorMessage={fieldState.error?.message}
+        type="password"
+        placeholder={t('password')}
+      />
     ),
     [],
   );

@@ -1,13 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-import { MovieService } from '@services/movies/movies.service';
+import { GetMoviesParams } from '@services/movies/movies.types';
 import { MovieFromApi, GetMovieResponse } from '@services/movies/movies.dto';
-import { GetMoviesParams, Order, SortMoviesBy } from '@services/movies/movies.types';
+// import { MovieService } from '@services/movies/movies.service';
+// import { GetMoviesParams, Order, SortMoviesBy } from '@services/movies/movies.types';
 
 import mock from './mock.json';
 
-const LIMIT = 10;
-const movieService = new MovieService();
+// Todo: uncomment when BE fix token
+
+// const LIMIT = 10;
+// const movieService = new MovieService();
 
 export const fetchMovies = createAsyncThunk<GetMovieResponse, Partial<GetMoviesParams>>('fetchMovies', async (_params = {}) => {
   // Todo: uncomment when BE fix token
@@ -25,10 +28,10 @@ export const refreshMovies = createAsyncThunk<GetMovieResponse, Partial<GetMovie
   return mock;
 });
 
-export const fetchMoreMovies = createAsyncThunk<GetMovieResponse, Partial<GetMoviesParams>>('loadMoreMovies', async (params = {}) => {
-  const res = await movieService.getMovies({ ...params, limit: LIMIT, sort: SortMoviesBy.Title, order: Order.ASC });
+export const fetchMoreMovies = createAsyncThunk<GetMovieResponse, Partial<GetMoviesParams>>('loadMoreMovies', async (_params = {}) => {
+  // const res = await movieService.getMovies({ ...params, limit: LIMIT, sort: SortMoviesBy.Title, order: Order.ASC });
 
-  return res;
+  return [] as GetMovieResponse;
 });
 
 interface MoviesState {
