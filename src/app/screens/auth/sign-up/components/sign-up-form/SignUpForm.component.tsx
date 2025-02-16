@@ -114,7 +114,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmitPress, contentCo
         <Controller name={SignUpField.Password} control={control} render={renderPasswordInput} />
         <Controller name={SignUpField.ConfirmPassword} control={control} render={renderConfirmPasswordInput} />
       </View>
-      <MainButton title={t('signIn.button')} onPress={submitFormWithValidation} />
+      <MainButton title={t('signIn.button')} style={styles.button} onPress={submitFormWithValidation} />
     </KeyboardAwareScrollView>
   );
 };

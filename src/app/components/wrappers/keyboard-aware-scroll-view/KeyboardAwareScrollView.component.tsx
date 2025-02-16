@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { KeyboardAvoidingView, KeyboardAvoidingViewProps, ScrollView, ScrollViewProps, StyleProp, ViewStyle } from 'react-native';
+import { initialWindowMetrics } from 'react-native-safe-area-context';
+import { KeyboardAvoidingView, KeyboardAvoidingViewProps, Platform, ScrollView, ScrollViewProps, StyleProp, ViewStyle } from 'react-native';
 
 import { styles } from './keyboard-aware-scroll-view.styles';
 
@@ -18,23 +18,19 @@ export const KeyboardAwareScrollView: React.FC<PropsWithChildren<KeyboardAwareSc
   contentContainerStyle,
   children,
   ...props
-}) => {
-  const insets = useSafeAreaInsets();
-
-  return (
-    <KeyboardAvoidingView
-      behavior={behavior ?? 'padding'}
-      keyboardVerticalOffset={keyboardVerticalOffset ?? insets.top}
-      enabled={enabled}
-      style={[styles.flex, containerStyle]}>
-      <ScrollView
-        bounces={false}
-        keyboardShouldPersistTaps="handled"
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={[styles.flex, contentContainerStyle]}
-        {...props}>
-        {children}
-      </ScrollView>
-    </KeyboardAvoidingView>
-  );
-};
+}) => (
+  <KeyboardAvoidingView
+    behavior={behavior ?? 'padding'}
+    keyboardVerticalOffset={keyboardVerticalOffset ?? Platform.select({ ios: 0, android: initialWindowMetrics?.insets.top })}
+    enabled={enabled}
+    style={[styles.keyboardAvoid, containerStyle]}>
+    <ScrollView
+      bounces={false}
+      keyboardShouldPersistTaps="handled"
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={[styles.scrollView, contentContainerStyle]}
+      {...props}>
+      {children}
+    </ScrollView>
+  </KeyboardAvoidingView>
+);
