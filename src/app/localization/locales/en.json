@@ -1,7 +1,16 @@
 {
-  "invalidEmail": "Invalid email address",
+  "validation": {
+    "required": "Required field",
+    "invalidEmail": "Invalid email address",
+    "confirmPassword": "Password must match",
+    "noSpacesInPassword": "Password can not contain spaces",
+    "passwordMinMaxLength": "Password must be at least {{min}} and up to {{max}} ",
+    "invalidName": "Invalid name"
+  },
+  "name": "Name",
   "email": "Email",
   "password": "Password",
+  "confirmPassword": "Confirm password",
   "welcome": {
     "title": "Welcome, Movie Buff!",
     "subtitle": " Your cinematic journey begins here",
