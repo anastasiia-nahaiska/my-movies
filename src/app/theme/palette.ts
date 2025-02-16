@@ -5,10 +5,12 @@ export const lightPalette: Palette = {
   primary: '#e21414',
   text: '#0B090A',
   secondaryText: '#2c1f1f',
-  surface: '#B1A7A6',
-  border: '#625C5B',
+  disabledText: '#7c7373',
+  surface: '#d6cecd',
+  border: '#8c8181',
   tabBar: '#2c1f1f',
   onPrimary: '#fff',
+  error: '#e21414',
 };
 
 export const darkPalette: Palette = {
@@ -16,8 +18,10 @@ export const darkPalette: Palette = {
   primary: '#e21414',
   text: '#FFFFFF',
   secondaryText: '#F5F3F4',
-  surface: '#B1A7A6',
-  border: '#D3D3D3',
+  disabledText: '#b2a9a9',
+  surface: '#473f3e',
+  border: '#676262',
   tabBar: '#2c1f1f',
   onPrimary: '#fff',
+  error: '#e21414',
 };

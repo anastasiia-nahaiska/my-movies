@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import { Typography } from './typography.types';
 
-export const styles = StyleSheet.create({
+export const textStyles = StyleSheet.create({
   [Typography.Heading1]: {
     fontFamily: 'OpenSans-SemiBold.ttf',
     fontSize: 24,
@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
   },
   [Typography.Caption]: {
     fontFamily: 'OpenSans-Regular.ttf',
-    fontSize: 8,
+    fontSize: 12,
   },
   [Typography.Button]: {
     fontFamily: 'OpenSans-SemiBold.ttf',

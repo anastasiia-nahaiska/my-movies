@@ -10,8 +10,10 @@ export interface Palette {
   primary: ColorValue;
   text: ColorValue;
   secondaryText: ColorValue;
+  disabledText: ColorValue;
   surface: ColorValue;
   border: ColorValue;
   tabBar: ColorValue;
   onPrimary: ColorValue;
+  error: ColorValue;
 }

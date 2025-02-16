@@ -29,6 +29,8 @@ module.exports = {
 
     'no-duplicate-imports': 'error',
     '@typescript-eslint/no-empty-interface': ['error', { allowSingleExtends: true }],
+
+    'react/display-name': ['off'],
   },
   ignorePatterns: ['/dist/*'],
 };
