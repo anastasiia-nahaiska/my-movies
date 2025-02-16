@@ -37,7 +37,8 @@
             "./src/assets/fonts/OpenSans-SemiBold.ttf"
           ]
         }
-      ]
+      ],
+      "expo-localization"
     ],
     "experiments": {
       "typedRoutes": true

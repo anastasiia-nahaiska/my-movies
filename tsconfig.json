@@ -7,11 +7,11 @@
       "@assets/*": [
         "src/assets/*"
       ],
-      "@config/*": [
-        "src/app/config/*"
-      ],
       "@localization/*": [
-        "src/app/localization/localization.ts"
+        "src/app/localization/*"
+      ],
+       "@config/*": [
+        "src/app/config/*"
       ],
       "@components/*": [
         "src/app/components/*"

@@ -3815,7 +3815,7 @@ expo-linking@7.0.5:
     expo-constants "~17.0.5"
     invariant "^2.2.4"
 
-expo-localization@~16.0.1:
+expo-localization@16.0.1:
   version "16.0.1"
   resolved "https://registry.yarnpkg.com/expo-localization/-/expo-localization-16.0.1.tgz#a6016288f0e4a5acef143d2a39ac3e5b4ac8963e"
   integrity sha512-kUrXiV/Pq9r7cG+TMt+Qa49IUQ9Y/czVwen4hmiboTclTopcWdIeCzYZv6JGtufoPpjEO9vVx1QJrXYl9V2u0Q==
@@ -4512,7 +4512,7 @@ hyphenate-style-name@^1.0.3:
   resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.1.0.tgz#1797bf50369588b47b72ca6d5e65374607cf4436"
   integrity sha512-WDC/ui2VVRrz3jOVi+XtjqkDjiVjTtFaAGiW37k6b+ohyQ5wYDOGkvCZa8+H0nx3gyvv0+BST9xuOgIyGQ00gw==
 
-i18next@^24.2.2:
+i18next@24.2.2:
   version "24.2.2"
   resolved "https://registry.yarnpkg.com/i18next/-/i18next-24.2.2.tgz#3ba3d213302068d569142737f03f30929de696de"
   integrity sha512-NE6i86lBCKRYZa5TaUDkU5S4HFgLIEJRLr3Whf2psgaxBleQ2LC1YW1Vc+SCgkAW7VEzndT6al6+CzegSUHcTQ==
@@ -5738,10 +5738,10 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
-lottie-ios@^4.5.1:
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/lottie-ios/-/lottie-ios-4.5.1.tgz#df39d47db78221841490c37d26b43d08372c9928"
-  integrity sha512-LmFJG5ip7ZTuoMttmV6NyAY6dR8sEyVYEJOqJytS+fRAjpvqsF0tM/1VFt3lV7Ck7XB043QHwVelLag7fOx/TA==
+lottie-ios@4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lottie-ios/-/lottie-ios-4.5.0.tgz#d534643ac20b5587412ff569990cbe59234ef558"
+  integrity sha512-lQa7L3YE4+FqZY+mhUO50kgZu1nVjIZUAF+bOrZBZjzJfLQFDXaX2RjNi1wbH6mH5wAlRTED04TvsSjIORMj4g==
 
 lottie-react-native@7.1.0:
   version "7.1.0"
@@ -6848,7 +6848,7 @@ react-native-gesture-handler@2.20.2:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
-react-native-mmkv@^3.2.0:
+react-native-mmkv@3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-native-mmkv/-/react-native-mmkv-3.2.0.tgz#460723eb23b9cc92c65b0416eae9874a6ddf5b82"
   integrity sha512-9y7K//1MaU46TFrXkyU0wT5VGk9Y2FDLFV6NPl+z3jTbm2G7SC1UIxneF6CfhSmBX5CfKze9SO7kwDuRx7flpQ==
@@ -6869,6 +6869,11 @@ react-native-reanimated@3.16.1:
     "@babel/preset-typescript" "^7.16.7"
     convert-source-map "^2.0.0"
     invariant "^2.2.4"
+
+react-native-restart@^0.0.27:
+  version "0.0.27"
+  resolved "https://registry.yarnpkg.com/react-native-restart/-/react-native-restart-0.0.27.tgz#43aa8210312c9dfa5ec7bd4b2f35238ad7972b19"
+  integrity sha512-8KScVICrXwcTSJ1rjWkqVTHyEKQIttm5AIMGSK1QG1+RS5owYlE4z/1DykOTdWfVl9l16FIk0w9Xzk9ZO6jxlA==
 
 react-native-safe-area-context@4.12.0:
   version "4.12.0"
