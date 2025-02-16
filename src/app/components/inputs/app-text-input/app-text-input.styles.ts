@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     lineHeight: 20,
 
     paddingVertical: 19,
-    paddingStart: 20,
+    paddingStart: 4,
   },
   error: {
     paddingTop: 8,

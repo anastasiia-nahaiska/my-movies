@@ -4,9 +4,13 @@ export const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     gap: 24,
 
-    paddingHorizontal: 20,
     paddingVertical: 16,
+  },
+  iconButton: {
+    position: 'absolute',
+    start: 0,
   },
 });
