@@ -13,6 +13,7 @@
       "bundleIdentifier": "com.anonymous.mymovies"
     },
     "android": {
+      "softwareKeyboardLayoutMode": "pan",
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#000000"

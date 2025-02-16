@@ -1,13 +1,17 @@
 import { object, string } from 'yup';
+import { Keyboard, View } from 'react-native';
 import React, { useCallback, useMemo } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, ControllerProps, Controller } from 'react-hook-form';
-import { Keyboard, ScrollView, ScrollViewProps, View } from 'react-native';
 
 import { EMAIL_REGEX } from '@utils/constants/regexes';
 import { useLocalization } from '@localization/useLocalization.hook';
 import { MainButton } from '@components/buttons/main-button/MainButton.component';
 import { AppTextInput } from '@components/inputs/app-text-input/AppTextInput.component';
+import {
+  KeyboardAwareScrollView,
+  KeyboardAwareScrollViewProps,
+} from '@components/wrappers/keyboard-aware-scroll-view/KeyboardAwareScrollView.component';
 
 import { styles } from './sign-in-form.styles';
 
@@ -21,7 +25,7 @@ interface Form {
   [SignInField.Password]: string;
 }
 
-interface SignInFormProps extends ScrollViewProps {
+interface SignInFormProps extends KeyboardAwareScrollViewProps {
   onSubmitPress: (email: string, password: string) => void;
 }
 
@@ -31,8 +35,8 @@ export const SignInForm: React.FC<SignInFormProps> = ({ onSubmitPress, contentCo
   const schema = useMemo(
     () =>
       object({
-        [SignInField.Email]: string().required().matches(EMAIL_REGEX, t('invalidEmail')),
-        [SignInField.Password]: string().required(),
+        [SignInField.Email]: string().required().matches(EMAIL_REGEX, t('validation.invalidEmail')),
+        [SignInField.Password]: string().required(t('validation.required')),
       }),
     [],
   );
@@ -70,12 +74,12 @@ export const SignInForm: React.FC<SignInFormProps> = ({ onSubmitPress, contentCo
   );
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false} bounces={false} contentContainerStyle={[styles.container, contentContainerStyle]} {...props}>
+    <KeyboardAwareScrollView {...props}>
       <View style={styles.inputs}>
         <Controller name={SignInField.Email} control={control} render={renderEmailInput} />
         <Controller name={SignInField.Password} control={control} render={renderPasswordInput} />
       </View>
       <MainButton title={t('signIn.button')} onPress={submitFormWithValidation} />
-    </ScrollView>
+    </KeyboardAwareScrollView>
   );
 };
