@@ -51,7 +51,7 @@ export const AppTextInput = React.forwardRef<TextInput, Props>(
     const errorAnim = useSharedValue(0);
     const focusedAnim = useSharedValue(0);
 
-    const { border, surface, error, text, disabledText } = usePalette();
+    const { border, surface, error, text, disabledText, secondaryText } = usePalette();
 
     const isError = errorMessage.length > 0;
     const visibilityIconName = isVisibleText ? EyeIconName.On : EyeIconName.Off;
@@ -61,7 +61,7 @@ export const AppTextInput = React.forwardRef<TextInput, Props>(
     }, [isError]);
 
     const borderAnimatedStyle = useAnimatedStyle(() => {
-      const borderColorBeforeError = focusedAnim.value ? border : surface;
+      const borderColorBeforeError = focusedAnim.value ? border : secondaryText;
 
       return {
         borderColor: isError
@@ -98,7 +98,7 @@ export const AppTextInput = React.forwardRef<TextInput, Props>(
       <Animated.View layout={LinearTransition}>
         <View style={containerStyle}>
           <Animated.View style={[styles.textInputContainer, borderAnimatedStyle, textInputContainerStyle]}>
-            {type === 'search' && <Ionicons name="search" size={24} color={surface} />}
+            {type === 'search' && <Ionicons name="search" size={24} color={border} />}
             <TextInput
               ref={ref}
               placeholderTextColor={disabledText}
@@ -109,9 +109,11 @@ export const AppTextInput = React.forwardRef<TextInput, Props>(
               onFocus={handleFocusInput}
             />
             {type === 'password' && (
-              <IconButton icon={<Ionicons name={visibilityIconName} size={24} color={surface} />} hitSlop={16} onPress={changeVisibility} />
+              <IconButton icon={<Ionicons name={visibilityIconName} size={24} color={border} />} hitSlop={16} onPress={changeVisibility} />
             )}
-            {showClearButton && <IconButton icon={<Ionicons name="close-circle-outline" size={24} color={text} />} hitSlop={16} onPress={onClear} />}
+            {showClearButton && (
+              <IconButton icon={<Ionicons name="close-circle-outline" size={24} color={border} />} hitSlop={16} onPress={onClear} />
+            )}
           </Animated.View>
           {isError && <ErrorMessage style={styles.error} errorMessage={errorMessage} />}
         </View>

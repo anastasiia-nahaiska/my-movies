@@ -1,11 +1,9 @@
 export enum AppStackRoutes {
   Auth = 'Auth',
-  BottomTabs = 'BottomTabs',
-  Movie = 'Movie',
+  MainStack = 'MainStack',
 }
 
 export type AppStackParamList = {
   [AppStackRoutes.Auth]: undefined;
-  [AppStackRoutes.BottomTabs]: undefined;
-  [AppStackRoutes.Movie]: { movieId: string };
+  [AppStackRoutes.MainStack]: undefined;
 };
