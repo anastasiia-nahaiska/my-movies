@@ -4,7 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { usePalette } from '@theme/usePalette.hook';
 import { Line } from '@components/line/Line.component';
-import { MovieFromApi } from '@services/movie/movie.dto';
+import { MovieFromApi } from '@services/movies/movies.dto';
 import { AppText, Typography } from '@components/app-text';
 
 import { styles } from './movie-card.styles';

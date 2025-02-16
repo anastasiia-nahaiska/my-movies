@@ -3,10 +3,12 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     gap: 16,
-    flex: 1,
   },
-  search: {
+  searchInputContainer: {
     marginHorizontal: 20,
+  },
+  searchInput: {
+    paddingVertical: 12,
   },
   addButton: {
     padding: 8,
@@ -17,5 +19,8 @@ export const styles = StyleSheet.create({
     flexGrow: 1,
 
     padding: 20,
+  },
+  activityIndicator: {
+    flex: 1,
   },
 });

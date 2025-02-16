@@ -1,24 +1,54 @@
-import React, { useCallback } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { FlatList, ListRenderItem } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { ActivityIndicator, FlatList, ListRenderItem, RefreshControl } from 'react-native';
 
+import { useAppDispatch } from '@store/hooks';
 import { usePalette } from '@theme/usePalette.hook';
-import { MovieFromApi } from '@services/movie/movie.dto';
+import { useMovies } from '@app/hooks/useMovies.hook';
+import { useDebounce } from '@app/hooks/useDebounce.hook';
+import { MovieFromApi } from '@services/movies/movies.dto';
+import { useLocalization } from '@localization/useLocalization.hook';
 import { MovieCard } from '@components/cards/movie-card/MovieCard.component';
 import { BigHeader } from '@components/headers/big-header/BigHeader.component';
 import { IconButton } from '@components/buttons/icon-button/IconButton.component';
 import { AppTextInput } from '@components/inputs/app-text-input/AppTextInput.component';
+import { fetchMoreMovies, fetchMovies, refreshMovies } from '@store/slices/movies.slice';
 
-import mock from './mock.json';
 import { styles } from './movies.styles';
-import { useLocalization } from '@localization/useLocalization.hook';
 
 const MOVIE_CARD_HEIGHT = 150;
 
 export const Movies: React.FC = () => {
+  const [query, setQuery] = useState('');
+
   const { t } = useLocalization();
-  const { text, primary } = usePalette();
+  const { onPrimary, primary, text } = usePalette();
+
+  const movies = useMovies();
+  const dispatch = useAppDispatch();
+
+  const debouncedQuery = useDebounce(query);
+
+  // Todo: remove filteredData when BE fix token
+  const filteredData = useMemo(
+    () => movies.data.filter(el => el.title.toLowerCase().includes(debouncedQuery.trim().toLowerCase())),
+    [debouncedQuery, movies.data],
+  );
+
+  useEffect(() => {
+    dispatch(fetchMovies({ search: debouncedQuery, offset: 0 }));
+  }, [debouncedQuery]);
+
+  const onEndReached = () => {
+    if (movies.hasMore) {
+      fetchMoreMovies({ offset: movies.offset, search: debouncedQuery });
+    }
+  };
+
+  const onRefresh = () => {
+    dispatch(refreshMovies({ search: debouncedQuery }));
+  };
 
   const renderMovieCard: ListRenderItem<MovieFromApi> = useCallback(({ item }) => <MovieCard movie={item} />, []);
 
@@ -34,17 +64,21 @@ export const Movies: React.FC = () => {
         title={t('movies')}
         endElement={
           <IconButton
-            icon={<Ionicons name="add" size={24} color={text} />}
+            icon={<Ionicons name="add" size={24} color={onPrimary} />}
             onPress={() => null}
             style={[{ backgroundColor: primary }, styles.addButton]}
           />
         }
       />
-      <AppTextInput type="search" style={{ paddingVertical: 12 }} containerStyle={styles.search} />
+      <AppTextInput type="search" value={query} onChangeText={setQuery} style={styles.searchInput} containerStyle={styles.searchInputContainer} />
       <FlatList
-        data={mock.data}
+        // Todo: replace with movies.data when BE fix token
+        data={filteredData}
         renderItem={renderMovieCard}
+        onEndReached={onEndReached}
+        refreshControl={<RefreshControl refreshing={movies.refreshing} onRefresh={onRefresh} />}
         showsVerticalScrollIndicator={false}
+        ListEmptyComponent={movies.loading ? <ActivityIndicator style={styles.activityIndicator} color={text} /> : null}
         contentContainerStyle={styles.list}
         getItemLayout={getItemLayout}
       />

@@ -18,10 +18,10 @@ export const MainStack: React.FC<NativeStackScreenProps<AppStackParamList, AppSt
   const { isSessionExpired } = useAppSelector(store => store.session);
 
   useEffect(() => {
-    if (isSessionExpired) {
+    if (isSessionExpired && authService.isAuthorized) {
       handleSessionExpired();
     }
-  }, [isSessionExpired]);
+  }, [isSessionExpired, authService]);
 
   const handleSessionExpired = () => {
     authService.signOut();

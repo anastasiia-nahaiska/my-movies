@@ -13,7 +13,7 @@ export const AppStack = () => {
   const { background } = usePalette();
   const authService = useAuthService();
 
-  const initialRouteName = !authService.isAuthorized ? AppStackRoutes.MainStack : AppStackRoutes.Auth;
+  const initialRouteName = authService.isAuthorized ? AppStackRoutes.MainStack : AppStackRoutes.Auth;
 
   return (
     <Stack.Navigator initialRouteName={initialRouteName} screenOptions={{ headerShown: false, contentStyle: { backgroundColor: background } }}>
