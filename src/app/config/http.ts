@@ -3,6 +3,7 @@ import axios, { HttpStatusCode, type AxiosInstance, type AxiosRequestConfig } fr
 // import { rootStore } from '@store/root-store';
 import { AnyObject } from '@app/types/common.types';
 import { ErrorCode } from '@app/types/statuses.types';
+import { Platform } from 'react-native';
 // import { sessionSlice } from '@store/slices/session.slice';
 
 export interface RequestConfig {
@@ -86,4 +87,10 @@ class Http {
   }
 }
 
-export const http = new Http(process.env.EXPO_PUBLIC_API_URL);
+export const http = new Http(
+  Platform.select({
+    ios: process.env.EXPO_PUBLIC_IOS_API_URL,
+    android: process.env.EXPO_PUBLIC_ANDROID_API_URL,
+    default: process.env.EXPO_PUBLIC_IOS_API_URL,
+  }),
+);

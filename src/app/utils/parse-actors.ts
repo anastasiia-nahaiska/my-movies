@@ -1,4 +1,4 @@
-import { FULL_NAME_REGEX } from '@utils/constants/regexes';
+import { FULL_NAME_REGEX } from '@app/constants/regexes';
 
 export const parseActors = (actors: string): string[] =>
   actors

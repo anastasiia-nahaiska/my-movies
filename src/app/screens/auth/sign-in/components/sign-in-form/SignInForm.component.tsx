@@ -4,7 +4,7 @@ import React, { useCallback, useMemo } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, ControllerProps, Controller } from 'react-hook-form';
 
-import { EMAIL_REGEX } from '@utils/constants/regexes';
+import { EMAIL_REGEX } from '@app/constants/regexes';
 import { useLocalization } from '@localization/useLocalization.hook';
 import { MainButton } from '@components/buttons/main-button/MainButton.component';
 import {

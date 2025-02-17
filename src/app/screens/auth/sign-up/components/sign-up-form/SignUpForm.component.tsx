@@ -6,7 +6,7 @@ import { useForm, ControllerProps, Controller } from 'react-hook-form';
 
 import { useLocalization } from '@localization/useLocalization.hook';
 import { MainButton } from '@components/buttons/main-button/MainButton.component';
-import { EMAIL_REGEX, NAME_REGEX, NO_SPACES_REGEX, PASSWORD_MIN_MAX_REGEX } from '@utils/constants/regexes';
+import { EMAIL_REGEX, NAME_REGEX, PASSWORD_MIN_MAX_REGEX } from '@app/constants/regexes';
 import {
   KeyboardAwareScrollView,
   KeyboardAwareScrollViewProps,

@@ -5,10 +5,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, ControllerProps, Controller } from 'react-hook-form';
 
 import { AppText } from '@components/app-text';
+import { parseActors } from '@utils/parse-actors';
 import { VideoFormat } from '@app/types/video-format';
 import { AddMovieRequest } from '@services/movies/movies.dto';
 import { useLocalization } from '@localization/useLocalization.hook';
-import { FOUR_DIGITS_NUMBER, FULL_NAME_REGEX } from '@utils/constants/regexes';
+import { FOUR_DIGITS_NUMBER, FULL_NAME_REGEX } from '@app/constants/regexes';
 import { MainButton } from '@components/buttons/main-button/MainButton.component';
 import {
   KeyboardAwareScrollView,
@@ -17,7 +18,6 @@ import {
 import { AnimatedAppTextInput } from '@components/inputs/animated-app-text-input/AnimatedAppTextInput.component';
 
 import { styles } from './add-movie-form.styles';
-import { parseActors } from '@utils/helpers/parse-actors';
 
 enum AddMovieField {
   Title = 'Title',
