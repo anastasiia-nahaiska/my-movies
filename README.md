@@ -1,6 +1,6 @@
 # My Movies 🎥
 
-![Preview](https://ik.imagekit.io/1uww7gf2n/my-movies/movies_preview.webm/ik-video.mp4?updatedAt=1739760627409)
+[Preview](https://ik.imagekit.io/1uww7gf2n/my-movies/movies_preview.webm/ik-video.mp4?updatedAt=1739760627409)
 
 
 ## Get started
