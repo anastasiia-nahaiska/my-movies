@@ -1,4 +1,4 @@
-import { parseActors } from "@utils/parse-actors";
+import { parseActors } from '@utils/parse-actors';
 
 describe('parseActors', () => {
   const validActors = 'Robert De Niro, Meryl Streep, Al Pacino';
