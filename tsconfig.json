@@ -10,7 +10,7 @@
       "@localization/*": [
         "src/app/localization/*"
       ],
-       "@config/*": [
+      "@config/*": [
         "src/app/config/*"
       ],
       "@components/*": [

@@ -18,6 +18,9 @@
         "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#000000"
       },
+      "config": {
+        "usesCleartextTraffic": true
+      },
       "package": "com.anonymous.mymovies"
     },
     "plugins": [
@@ -33,16 +36,27 @@
       [
         "expo-font",
         {
-          "fonts": [
-            "./src/assets/fonts/OpenSans-Regular.ttf",
-            "./src/assets/fonts/OpenSans-SemiBold.ttf"
-          ]
+          "fonts": ["./src/assets/fonts/OpenSans-Regular.ttf", "./src/assets/fonts/OpenSans-SemiBold.ttf"]
         }
       ],
-      "expo-localization"
+      "expo-localization",
+      "expo-build-properties",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9d1ed9b2-2884-462a-90a1-3a4445978849"
+      }
     }
   }
 }
