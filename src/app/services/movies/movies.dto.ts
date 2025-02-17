@@ -8,7 +8,7 @@ export interface MovieFromApi {
   format: string;
   createdAt: string;
   updatedAt: string;
-  actors: ActorFromApi[];
+  actors?: ActorFromApi[];
 }
 
 export type MovieSummary = Omit<MovieFromApi, 'actors'>;
@@ -21,16 +21,16 @@ export interface ActorFromApi {
 }
 
 export interface MovieResponse {
-  data?: MovieFromApi;
-  status?: ResponseStatus;
+  data: MovieFromApi;
+  status: ResponseStatus;
 }
 
 export interface GetMovieResponse {
-  data?: MovieSummary[];
-  meta?: {
+  data: MovieSummary[];
+  meta: {
     total: number;
   };
-  status?: ResponseStatus;
+  status: ResponseStatus;
 }
 
 export interface AddMovieRequest {

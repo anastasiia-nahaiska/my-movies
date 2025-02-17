@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { View, ViewProps } from 'react-native';
+import { TouchableOpacityProps, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { usePalette } from '@theme/usePalette.hook';
@@ -12,16 +12,22 @@ import { BaseCard } from '../base-card/BaseCard.component';
 import { MovieCardDetail } from './movie-card-detail/MovieCardDetail.component';
 import { useLocalization } from '@localization/useLocalization.hook';
 
-interface MovieCardProp extends ViewProps {
+interface MovieCardProp extends Omit<TouchableOpacityProps, 'onPress'> {
   movie: MovieSummary;
+
+  onMovieCardPress: (movieId: number) => void;
 }
 
-export const MovieCard: React.FC<MovieCardProp> = memo(({ movie, style, ...props }) => {
+export const MovieCard: React.FC<MovieCardProp> = memo(({ movie, onMovieCardPress, style, ...props }) => {
   const { t } = useLocalization();
   const { disabledText } = usePalette();
 
+  const handlePress = () => {
+    onMovieCardPress(movie.id);
+  };
+
   return (
-    <BaseCard style={[styles.container, style]} {...props}>
+    <BaseCard style={[styles.container, style]} {...props} onPress={handlePress}>
       <View style={styles.header}>
         <AppText typography={Typography.Heading3}>{movie.title}</AppText>
         <Ionicons name="film" size={24} color={disabledText} />

@@ -32,7 +32,7 @@ export const refreshMovies = createAsyncThunk<GetMovieResponse, Partial<GetMovie
 export const fetchMoreMovies = createAsyncThunk<GetMovieResponse, Partial<GetMoviesParams>>('loadMoreMovies', async (_params = {}) => {
   // const res = await movieService.getMovies({ ...params, limit: LIMIT, sort: SortMoviesBy.Title, order: Order.ASC });
 
-  return [] as GetMovieResponse;
+  return [] as unknown as GetMovieResponse;
 });
 
 export const addMovie = createAsyncThunk<MovieResponse, AddMovieRequest>('addMovie', async params => {
@@ -69,6 +69,7 @@ export const moviesSlice = createSlice({
   name: 'movies',
   initialState,
   reducers: {
+    // Todo: removed reducers once BE fix token
     addMovie: (state, { payload }: PayloadAction<AddMovieRequest>) => {
       const today = new Date().toISOString();
       const actors = payload.actors.map(MovieActor.buildItemFromName);

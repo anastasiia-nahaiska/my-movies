@@ -7,5 +7,5 @@ export enum MainStackRoutes {
 export type MainStackParamList = {
   [MainStackRoutes.BottomTabs]: undefined;
   [MainStackRoutes.AddMovie]: undefined;
-  [MainStackRoutes.Movie]: { movieId: string };
+  [MainStackRoutes.Movie]: { movieId: number };
 };

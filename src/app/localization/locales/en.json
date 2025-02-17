@@ -10,6 +10,7 @@
   "movies": "Movies",
   "year": "Year",
   "format": "Format",
+  "actors": "Actors",
   "name": "Name",
   "email": "Email",
   "settings": "Settings",
@@ -18,6 +19,7 @@
   "english": "English",
   "signOut": "Sign out",
   "add": "Add",
+  "aboutMovie": "About movie",
   "darkTheme": "Dark theme",
   "addMovie": "Add Movie",
   "welcome": {

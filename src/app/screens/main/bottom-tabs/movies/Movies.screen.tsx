@@ -67,8 +67,9 @@ export const Movies: React.FC<
   });
 
   const navigateToAddMovie = () => navigation.navigate(MainStackRoutes.AddMovie);
+  const navigateToMovie = useCallback((movieId: number) => navigation.navigate(MainStackRoutes.Movie, { movieId }), []);
 
-  const renderMovieCard: ListRenderItem<MovieSummary> = useCallback(({ item }) => <MovieCard movie={item} />, []);
+  const renderMovieCard: ListRenderItem<MovieSummary> = useCallback(({ item }) => <MovieCard movie={item} onMovieCardPress={navigateToMovie} />, []);
 
   return (
     <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>

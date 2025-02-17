@@ -5,8 +5,12 @@ import { usePalette } from '@theme/usePalette.hook';
 
 import { styles } from './base-card.styles';
 
-export const BaseCard: React.FC<PropsWithChildren<TouchableOpacityProps>> = ({ children, style }) => {
+export const BaseCard: React.FC<PropsWithChildren<TouchableOpacityProps>> = ({ children, style, ...props }) => {
   const { surface } = usePalette();
 
-  return <TouchableOpacity style={[styles.container, { backgroundColor: surface }, style]}>{children}</TouchableOpacity>;
+  return (
+    <TouchableOpacity style={[styles.container, { backgroundColor: surface }, style]} {...props}>
+      {children}
+    </TouchableOpacity>
+  );
 };

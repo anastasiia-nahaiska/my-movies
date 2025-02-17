@@ -7,7 +7,7 @@ export class Movie implements MovieFromApi {
   public format: string;
   public createdAt: string;
   public updatedAt: string;
-  public actors: ActorFromApi[];
+  public actors?: ActorFromApi[];
 
   public constructor(id: number, title: string, year: number, format: string, createdAt: string, updatedAt: string, actors: ActorFromApi[] = []) {
     this.id = id;
