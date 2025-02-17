@@ -35,7 +35,7 @@ export const SignInForm: React.FC<SignInFormProps> = ({ onSubmitPress, contentCo
   const schema = useMemo(
     () =>
       object({
-        [SignInField.Email]: string().required().matches(EMAIL_REGEX, t('validation.invalidEmail')),
+        [SignInField.Email]: string().required(t('validation.required')).matches(EMAIL_REGEX, t('validation.invalidEmail')),
         [SignInField.Password]: string().required(t('validation.required')),
       }),
     [],

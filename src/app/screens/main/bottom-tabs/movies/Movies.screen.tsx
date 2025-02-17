@@ -1,5 +1,8 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { CompositeScreenProps } from '@react-navigation/native';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, FlatList, ListRenderItem, RefreshControl } from 'react-native';
 
@@ -7,19 +10,26 @@ import { useAppDispatch } from '@store/hooks';
 import { usePalette } from '@theme/usePalette.hook';
 import { useMovies } from '@app/hooks/useMovies.hook';
 import { useDebounce } from '@app/hooks/useDebounce.hook';
-import { MovieFromApi } from '@services/movies/movies.dto';
+import { MovieSummary } from '@services/movies/movies.dto';
 import { useLocalization } from '@localization/useLocalization.hook';
 import { MovieCard } from '@components/cards/movie-card/MovieCard.component';
 import { BigHeader } from '@components/headers/big-header/BigHeader.component';
 import { IconButton } from '@components/buttons/icon-button/IconButton.component';
 import { AppTextInput } from '@components/inputs/app-text-input/AppTextInput.component';
 import { fetchMoreMovies, fetchMovies, refreshMovies } from '@store/slices/movies.slice';
+import { MainStackParamList, MainStackRoutes } from '@navigation/main-stack/main-stack.routes';
+import { BottomTabsParamList, BottomTabsRoutes } from '@navigation/main-stack/bottom-tabs/bottom-tabs.routes';
 
 import { styles } from './movies.styles';
 
 const MOVIE_CARD_HEIGHT = 150;
 
-export const Movies: React.FC = () => {
+export const Movies: React.FC<
+  CompositeScreenProps<
+    BottomTabScreenProps<BottomTabsParamList, BottomTabsRoutes.Movies>,
+    NativeStackScreenProps<MainStackParamList, MainStackRoutes.AddMovie>
+  >
+> = ({ navigation }) => {
   const [query, setQuery] = useState('');
 
   const { t } = useLocalization();
@@ -50,22 +60,24 @@ export const Movies: React.FC = () => {
     dispatch(refreshMovies({ search: debouncedQuery }));
   };
 
-  const renderMovieCard: ListRenderItem<MovieFromApi> = useCallback(({ item }) => <MovieCard movie={item} />, []);
-
-  const getItemLayout = (_data: ArrayLike<MovieFromApi> | null | undefined, index: number) => ({
+  const getItemLayout = (_data: ArrayLike<MovieSummary> | null | undefined, index: number) => ({
     length: MOVIE_CARD_HEIGHT,
     offset: MOVIE_CARD_HEIGHT * index,
     index: index,
   });
 
+  const navigateToAddMovie = () => navigation.navigate(MainStackRoutes.AddMovie);
+
+  const renderMovieCard: ListRenderItem<MovieSummary> = useCallback(({ item }) => <MovieCard movie={item} />, []);
+
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
       <BigHeader
         title={t('movies')}
         endElement={
           <IconButton
+            onPress={navigateToAddMovie}
             icon={<Ionicons name="add" size={24} color={onPrimary} />}
-            onPress={() => null}
             style={[{ backgroundColor: primary }, styles.addButton]}
           />
         }

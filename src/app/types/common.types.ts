@@ -1,7 +1,7 @@
 export type Primitives = string | number | boolean | bigint | undefined | null | symbol;
 
-export type AnyArray = (Primitives | AnyJson)[];
+export type AnyArray = (Primitives | AnyObject)[];
 
-export type AnyJson = {
-  [key: string]: Primitives | AnyArray | AnyJson;
+export type AnyObject = {
+  [key: string]: Primitives | AnyArray | AnyObject;
 };

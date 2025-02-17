@@ -44,7 +44,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmitPress, contentCo
         [SignUpField.Email]: string().required(t('validation.required')).matches(EMAIL_REGEX, t('validation.invalidEmail')),
         [SignUpField.Password]: string()
           .required(t('validation.required'))
-          .matches(NO_SPACES_REGEX, t('validation.noSpacesInPassword'))
+          .trim()
           .matches(PASSWORD_MIN_MAX_REGEX, t('validation.passwordMinMaxLength', { min: 8, max: '32' })),
         [SignUpField.ConfirmPassword]: string()
           .required(t('validation.required'))

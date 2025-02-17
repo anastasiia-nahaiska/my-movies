@@ -16,8 +16,10 @@
   "password": "Password",
   "confirmPassword": "Confirm password",
   "english": "English",
-  "signOut": "sign out",
+  "signOut": "Sign out",
+  "add": "Add",
   "darkTheme": "Dark theme",
+  "addMovie": "Add Movie",
   "welcome": {
     "title": "Welcome, Movie Buff!",
     "subtitle": " Your cinematic journey begins here",

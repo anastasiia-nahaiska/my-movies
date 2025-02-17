@@ -5,10 +5,11 @@ import { useAppSelector } from '@store/hooks';
 import { usePalette } from '@theme/usePalette.hook';
 import { useSignOut } from '@app/hooks/useSignOut.hook';
 import { useAuthService } from '@app/hooks/useAuthService.hook';
-import { BottomTabs } from '@navigation/bottom-tabs/BottomTabs.navigation';
+import { BottomTabs } from '@navigation/main-stack/bottom-tabs/BottomTabs.navigation';
 import { AppStackParamList, AppStackRoutes } from '@navigation/app-stack.routes';
 
 import { MainStackParamList, MainStackRoutes } from './main-stack.routes';
+import { AddMovie } from '@app/screens/main/add-movie/AddMovie.screen';
 
 const Stack = createNativeStackNavigator<MainStackParamList>();
 
@@ -28,6 +29,7 @@ export const MainStack: React.FC<NativeStackScreenProps<AppStackParamList, AppSt
   return (
     <Stack.Navigator screenOptions={{ headerShown: false, contentStyle: { backgroundColor: background } }}>
       <Stack.Screen name={MainStackRoutes.BottomTabs} component={BottomTabs} />
+      <Stack.Screen name={MainStackRoutes.AddMovie} component={AddMovie} />
     </Stack.Navigator>
   );
 };

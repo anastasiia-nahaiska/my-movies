@@ -8,8 +8,8 @@ import { Typography } from '@components/app-text';
 import { usePalette } from '@theme/usePalette.hook';
 import { textStyles } from '@components/app-text/app-text.styles';
 import { useLocalization } from '@localization/useLocalization.hook';
-import { Movies } from '@app/screens/bottom-tabs/movies/Movies.screen';
-import { Settings } from '@app/screens/bottom-tabs/settings/Settings.screen';
+import { Movies } from '@app/screens/main/bottom-tabs/movies/Movies.screen';
+import { Settings } from '@app/screens/main/bottom-tabs/settings/Settings.screen';
 import { MainStackParamList, MainStackRoutes } from '@navigation/main-stack/main-stack.routes';
 
 import { BottomTabsParamList, BottomTabsRoutes } from './bottom-tabs.routes';

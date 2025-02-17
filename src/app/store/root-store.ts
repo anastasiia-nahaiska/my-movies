@@ -8,6 +8,10 @@ export const rootStore = configureStore({
     [sessionSlice.name]: sessionSlice.reducer,
     [moviesSlice.name]: moviesSlice.reducer,
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export type AppDispatch = typeof rootStore.dispatch;

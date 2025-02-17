@@ -8,7 +8,6 @@ export const lightPalette: Palette = {
   disabledText: '#7c7373',
   surface: '#d6cecd',
   border: '#8c8181',
-  tabBar: '#2c1f1f',
   onPrimary: '#fff',
   error: '#e21414',
 };
@@ -21,7 +20,6 @@ export const darkPalette: Palette = {
   disabledText: '#b2a9a9',
   surface: '#1E1E1E',
   border: '#676262',
-  tabBar: '#2c1f1f',
   onPrimary: '#fff',
   error: '#e21414',
 };

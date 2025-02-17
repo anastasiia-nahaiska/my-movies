@@ -4,7 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { usePalette } from '@theme/usePalette.hook';
 import { Line } from '@components/line/Line.component';
-import { MovieFromApi } from '@services/movies/movies.dto';
+import { MovieSummary } from '@services/movies/movies.dto';
 import { AppText, Typography } from '@components/app-text';
 
 import { styles } from './movie-card.styles';
@@ -13,7 +13,7 @@ import { MovieCardDetail } from './movie-card-detail/MovieCardDetail.component';
 import { useLocalization } from '@localization/useLocalization.hook';
 
 interface MovieCardProp extends ViewProps {
-  movie: MovieFromApi;
+  movie: MovieSummary;
 }
 
 export const MovieCard: React.FC<MovieCardProp> = memo(({ movie, style, ...props }) => {

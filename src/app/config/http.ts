@@ -1,14 +1,14 @@
 import axios, { HttpStatusCode, type AxiosInstance, type AxiosRequestConfig } from 'axios';
 
 // import { rootStore } from '@store/root-store';
-import { AnyJson } from '@app/types/common.types';
+import { AnyObject } from '@app/types/common.types';
 import { ErrorCode } from '@app/types/statuses.types';
 // import { sessionSlice } from '@store/slices/session.slice';
 
 export interface RequestConfig {
   auth?: { username: string; password: string };
-  params?: AnyJson;
-  data?: AnyJson;
+  params?: AnyObject;
+  data?: AnyObject;
 }
 
 export interface Headers {
@@ -43,15 +43,15 @@ class Http {
 
   public async get<T>(url: string, config?: RequestConfig) {
     const response = await this.axiosInstance.get<T>(url, config);
-    return response.data;
+    return response;
   }
 
-  public async post<T>(url: string, data?: AnyJson | FormData, config?: AxiosRequestConfig) {
+  public async post<T>(url: string, data?: AnyObject | FormData, config?: AxiosRequestConfig) {
     const response = await this.axiosInstance.post<T>(url, data, config);
     return response;
   }
 
-  public async patch<T>(url: string, data?: AnyJson | FormData, config?: AxiosRequestConfig) {
+  public async patch<T>(url: string, data?: AnyObject | FormData, config?: AxiosRequestConfig) {
     const response = await this.axiosInstance.patch<T>(url, data, config);
     return response;
   }

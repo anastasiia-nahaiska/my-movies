@@ -13,7 +13,6 @@ export interface Palette {
   disabledText: ColorValue;
   surface: ColorValue;
   border: ColorValue;
-  tabBar: ColorValue;
   onPrimary: ColorValue;
   error: ColorValue;
 }

@@ -1,16 +1,17 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
 import { GetMoviesParams } from '@services/movies/movies.types';
-import { MovieFromApi, GetMovieResponse } from '@services/movies/movies.dto';
-// import { MovieService } from '@services/movies/movies.service';
+import { MovieSummary, GetMovieResponse, AddMovieRequest, MovieResponse } from '@services/movies/movies.dto';
+import { MovieService } from '@services/movies/movies.service';
 // import { GetMoviesParams, Order, SortMoviesBy } from '@services/movies/movies.types';
 
 import mock from './mock.json';
+import { Movie, MovieActor } from '@services/movies/movies.models';
 
 // Todo: uncomment when BE fix token
 
 // const LIMIT = 10;
-// const movieService = new MovieService();
+const movieService = new MovieService();
 
 export const fetchMovies = createAsyncThunk<GetMovieResponse, Partial<GetMoviesParams>>('fetchMovies', async (_params = {}) => {
   // Todo: uncomment when BE fix token
@@ -34,12 +35,19 @@ export const fetchMoreMovies = createAsyncThunk<GetMovieResponse, Partial<GetMov
   return [] as GetMovieResponse;
 });
 
+export const addMovie = createAsyncThunk<MovieResponse, AddMovieRequest>('addMovie', async params => {
+  const res = await movieService.addMovie(params);
+
+  return res;
+});
+
 interface MoviesState {
-  data: MovieFromApi[];
+  data: MovieSummary[];
   total: number;
   offset: number;
   limit: number;
   loading: boolean;
+  adding: boolean;
   error: string | null;
   refreshing: boolean;
   hasMore: boolean;
@@ -51,6 +59,7 @@ const initialState: MoviesState = {
   offset: 0,
   limit: 10,
   loading: false,
+  adding: false,
   error: null,
   refreshing: false,
   hasMore: true,
@@ -59,7 +68,14 @@ const initialState: MoviesState = {
 export const moviesSlice = createSlice({
   name: 'movies',
   initialState,
-  reducers: {},
+  reducers: {
+    addMovie: (state, { payload }: PayloadAction<AddMovieRequest>) => {
+      const today = new Date().toISOString();
+      const actors = payload.actors.map(MovieActor.buildItemFromName);
+      const movie = new Movie(Math.random(), payload.title, payload.year, payload.format, today, today, actors);
+      state.data = [...state.data, movie].sort((curr, next) => curr.title.localeCompare(next.title));
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchMovies.pending, state => {
@@ -102,6 +118,23 @@ export const moviesSlice = createSlice({
       })
       .addCase(fetchMoreMovies.rejected, (state, action) => {
         state.loading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(addMovie.pending, state => {
+        state.adding = true;
+      })
+      .addCase(addMovie.fulfilled, (state, action) => {
+        state.adding = false;
+
+        if (action.payload.data) {
+          state.data = [...state.data, action.payload.data].sort((curr, next) => curr.title.localeCompare(next.title));
+        }
+
+        state.offset += 1;
+        state.hasMore = state.offset < state.total;
+      })
+      .addCase(addMovie.rejected, (state, action) => {
+        state.adding = false;
         state.error = action.payload as string;
       });
   },
