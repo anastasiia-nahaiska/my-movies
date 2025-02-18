@@ -26,9 +26,9 @@ export class MovieService {
     }
   }
 
-  public async getMovie(movieId: string) {
+  public async getMovie(movieId: number) {
     try {
-      const res = await http.post<MovieResponse>(`/movies/${movieId}`);
+      const res = await http.get<MovieResponse>(`/movies/${movieId}`);
 
       return Movie.buildItem(res.data.data);
     } catch (e) {

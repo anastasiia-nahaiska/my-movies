@@ -13,7 +13,8 @@
     "postinstall": "husky"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "setupFiles": ["<rootDir>/tests/setup.ts"]
   },
   "dependencies": {
     "@expo/vector-icons": "14.0.2",
