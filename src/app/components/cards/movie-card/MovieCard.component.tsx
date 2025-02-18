@@ -1,16 +1,15 @@
 import React, { memo } from 'react';
 import { TouchableOpacityProps, View } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { usePalette } from '@theme/usePalette.hook';
 import { Line } from '@components/line/Line.component';
-import { AppText, Typography } from '@components/app-text';
 import { MovieSummaryFromApi } from '@services/movies/movies.dto';
 import { useLocalization } from '@localization/useLocalization.hook';
 
 import { styles } from './movie-card.styles';
 import { BaseCard } from '../base-card/BaseCard.component';
 import { MovieCardDetail } from './movie-card-detail/MovieCardDetail.component';
+import { MovieCardHeader } from './movie-card-header/MovieCardHeader.component';
 
 interface MovieCardProp extends Omit<TouchableOpacityProps, 'onPress'> {
   movie: MovieSummaryFromApi;
@@ -28,10 +27,7 @@ export const MovieCard: React.FC<MovieCardProp> = memo(({ movie, onMovieCardPres
 
   return (
     <BaseCard style={[styles.container, style]} {...props} onPress={handlePress}>
-      <View style={styles.header}>
-        <AppText typography={Typography.Heading3}>{movie.title}</AppText>
-        <Ionicons name="film" size={24} color={disabledText} />
-      </View>
+      <MovieCardHeader title={movie.title} />
       <Line style={{ backgroundColor: disabledText, opacity: 0.7 }} />
       <View style={styles.details}>
         <MovieCardDetail title={`${t('year')}:`} value={movie.year.toString()} />
