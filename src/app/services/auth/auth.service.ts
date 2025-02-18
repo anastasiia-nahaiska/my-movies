@@ -6,7 +6,7 @@ import { sessionSlice } from '@store/slices/session.slice';
 import { CreateUserRequest, SessionResponse } from './auth.dto';
 
 export class AuthService {
-  private readonly accessTokenKey = 'ACCESS_TOKEN';
+  public static readonly ACCESS_TOKEN_KEY = 'ACCESS_TOKEN';
 
   private accessToken: string | null = null;
 
@@ -71,10 +71,10 @@ export class AuthService {
   }
 
   private getAccessTokenFromMemory() {
-    return memory.getItem<string>(this.accessTokenKey);
+    return memory.getItem<string>(AuthService.ACCESS_TOKEN_KEY);
   }
 
   private saveAccessTokenToMemory(accessToken: string) {
-    return memory.setItem<string>(this.accessTokenKey, accessToken);
+    return memory.setItem<string>(AuthService.ACCESS_TOKEN_KEY, accessToken);
   }
 }
