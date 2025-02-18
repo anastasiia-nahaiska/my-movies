@@ -8,7 +8,7 @@ export const movieToAdd: AddMovieRequest = {
   format: VideoFormat.DVD,
 };
 
-export const movie: MovieFromApi = {
+export const movieFromApi: MovieFromApi = {
   id: 123,
   title: 'Test',
   year: 2023,

@@ -1,6 +1,7 @@
 import { http } from '@config/http';
-import { movieToAdd, movie } from '@services/__mocks__/movies';
 import { MovieService } from '@services/movies/movies.service';
+import { movieToAdd, movieFromApi } from '@services/__mocks__/movies';
+import { Movie } from '@services/movies/models/movie.model';
 
 describe('movies service', () => {
   const error = new Error();
@@ -35,7 +36,7 @@ describe('movies service', () => {
     const movieId = 123;
 
     beforeAll(() => {
-      (http.get as jest.Mock).mockResolvedValue({ data: { data: movie } });
+      (http.get as jest.Mock).mockResolvedValue({ data: { data: movieFromApi } });
     });
 
     it('getMovie should call get http method with correct params', async () => {
@@ -48,6 +49,12 @@ describe('movies service', () => {
       (http.get as jest.Mock).mockRejectedValueOnce(error);
 
       await expect(moviesService.getMovie(movieId)).rejects.toThrow();
+    });
+
+    it('getMovie should build movie model and return in', async () => {
+      const result = await moviesService.getMovie(movieId);
+
+      expect(result).toBeInstanceOf(Movie);
     });
   });
 
