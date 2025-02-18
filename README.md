@@ -2,6 +2,9 @@
 
 [Preview](https://ik.imagekit.io/1uww7gf2n/my-movies/movies_preview.webm/ik-video.mp4?updatedAt=1739760627409)
 
+## Prerequisites
+
+This project uses **Yarn** as the package manager. Please ensure that you use Yarn instead of npm to install and manage dependencies to maintain consistency across all development environments.
 
 ## Get started
 
