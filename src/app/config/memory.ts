@@ -1,7 +1,11 @@
 import { MMKV } from 'react-native-mmkv';
 
-class Memory {
-  private storage = new MMKV();
+export class Memory {
+  private storage: MMKV;
+
+  public constructor(storage = new MMKV()) {
+    this.storage = storage;
+  }
 
   public setItem<T>(key: string, value: T) {
     this.storage.set(key, JSON.stringify(value));
