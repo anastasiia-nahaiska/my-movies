@@ -7,12 +7,8 @@
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-Create .env and add API_URLS:
+Create a .env file based on .env.example to set up environment variables.
 
-Example with 8001 port:
-```
-EXPO_PUBLIC_ANDROID_API_URL=http://10.0.2.2:8001/api/v1
-EXPO_PUBLIC_IOS_API_URL=http://localhost:8001/api/v1
 ```
 
 1. Install dependencies
