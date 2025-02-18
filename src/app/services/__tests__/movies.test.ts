@@ -12,6 +12,15 @@ describe('movies service', () => {
     jest.clearAllMocks();
   });
 
+  beforeAll(() => {
+    jest.spyOn(http, 'get');
+    jest.spyOn(http, 'post');
+  });
+
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
+
   describe('getMovies', () => {
     const requestParams = {};
 

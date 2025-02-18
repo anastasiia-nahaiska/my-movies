@@ -19,6 +19,22 @@ describe('auth service', () => {
     authService = new AuthService();
   });
 
+  beforeAll(() => {
+    jest.clearAllMocks();
+    jest.spyOn(memory, 'setItem');
+    jest.spyOn(memory, 'getItem');
+    jest.spyOn(memory, 'clear');
+    jest.spyOn(http, 'get');
+    jest.spyOn(http, 'post');
+    jest.spyOn(http, 'cleanHeaders');
+    jest.spyOn(http, 'addBearerToken');
+    jest.spyOn(rootStore, 'dispatch');
+  });
+
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
+
   it('should return user authorized info', () => {
     (memory.getItem as jest.Mock).mockReturnValueOnce(mockToken);
 
