@@ -69,7 +69,10 @@ export const Movies: React.FC<
   const navigateToAddMovie = () => navigation.navigate(MainStackRoutes.AddMovie);
   const navigateToMovie = useCallback((movieId: number) => navigation.navigate(MainStackRoutes.Movie, { movieId }), []);
 
-  const renderMovieCard: ListRenderItem<MovieSummary> = useCallback(({ item }) => <MovieCard movie={item} onMovieCardPress={navigateToMovie} />, []);
+  const renderMovieCard: ListRenderItem<MovieSummary> = useCallback(
+    ({ item }) => <MovieCard style={{ height: MOVIE_CARD_HEIGHT }} movie={item} onMovieCardPress={navigateToMovie} />,
+    [],
+  );
 
   return (
     <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
@@ -93,6 +96,7 @@ export const Movies: React.FC<
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={movies.loading ? <ActivityIndicator style={styles.activityIndicator} color={text} /> : null}
         contentContainerStyle={styles.list}
+        initialNumToRender={10}
         getItemLayout={getItemLayout}
       />
     </SafeAreaView>
