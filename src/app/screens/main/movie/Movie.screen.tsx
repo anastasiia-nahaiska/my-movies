@@ -5,7 +5,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { useMovies } from '@app/hooks/useMovies.hook';
 import { useLocalization } from '@localization/useLocalization.hook';
-import { Movie as MovieModel } from '@services/movies/movies.models';
+import { Movie as MovieModel } from '@services/movies/models/movie.model';
 import { DefaultHeader } from '@components/headers/default-header/DefaultHeader.component';
 import { MainStackParamList, MainStackRoutes } from '@navigation/main-stack/main-stack.routes';
 

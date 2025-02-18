@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import { View, ViewProps } from 'react-native';
 
-import { Movie } from '@services/movies/movies.models';
 import { AppText, Typography } from '@components/app-text';
+import { Movie } from '@services/movies/models/movie.model';
 import { useLocalization } from '@localization/useLocalization.hook';
 import { MovieCardDetail } from '@components/cards/movie-card/movie-card-detail/MovieCardDetail.component';
 

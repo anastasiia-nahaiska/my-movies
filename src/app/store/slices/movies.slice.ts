@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
 import { Pagination } from '@app/types/pagination';
+import { Movie } from '@services/movies/models/movie.model';
 import { MovieService } from '@services/movies/movies.service';
 import { GetMoviesParams } from '@services/movies/movies.types';
-import { Movie, MovieActor } from '@services/movies/movies.models';
+import { MovieActor } from '@services/movies/models/movie-actor.model';
 import { MovieSummaryFromApi, AddMovieRequest, MovieResponse } from '@services/movies/movies.dto';
 // import { GetMoviesParams, Order, SortMoviesBy } from '@services/movies/movies.types';
 

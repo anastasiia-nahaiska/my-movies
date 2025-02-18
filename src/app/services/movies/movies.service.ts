@@ -1,9 +1,9 @@
 import { http } from '@config/http';
+import { Pagination } from '@app/types/pagination';
 
+import { Movie } from './models/movie.model';
 import { GetMoviesParams } from './movies.types';
 import { AddMovieRequest, MovieResponse, MovieSummaryFromApi } from './movies.dto';
-import { Movie } from './movies.models';
-import { Pagination } from '@app/types/pagination';
 
 export class MovieService {
   public async getMovies(params: GetMoviesParams) {
