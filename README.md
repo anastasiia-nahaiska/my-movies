@@ -23,12 +23,6 @@ Create a .env file based on .env.example to set up environment variables.
    yarn start
    ```
 
-3. Pre-build the project to generate native code folders
-
-   ```bash
-   npx expo prebuild
-   ```
-
 3. Build the app android app
 
    ```bash
