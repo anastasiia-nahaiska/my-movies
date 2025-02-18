@@ -1,13 +1,14 @@
 import { http } from '@config/http';
 
 import { GetMoviesParams } from './movies.types';
-import { AddMovieRequest, GetMovieResponse, MovieResponse } from './movies.dto';
+import { AddMovieRequest, MovieResponse, MovieSummaryFromApi } from './movies.dto';
 import { Movie } from './movies.models';
+import { Pagination } from '@app/types/pagination';
 
 export class MovieService {
   public async getMovies(params: GetMoviesParams) {
     try {
-      const res = await http.get<GetMovieResponse>('/movies', { params: { ...params } });
+      const res = await http.get<Pagination<MovieSummaryFromApi>>('/movies', { params: { ...params } });
 
       return res.data;
     } catch (e) {

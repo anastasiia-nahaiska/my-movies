@@ -1,19 +1,20 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
-import { GetMoviesParams } from '@services/movies/movies.types';
-import { MovieSummary, GetMovieResponse, AddMovieRequest, MovieResponse } from '@services/movies/movies.dto';
+import { Pagination } from '@app/types/pagination';
 import { MovieService } from '@services/movies/movies.service';
+import { GetMoviesParams } from '@services/movies/movies.types';
+import { Movie, MovieActor } from '@services/movies/movies.models';
+import { MovieSummaryFromApi, AddMovieRequest, MovieResponse } from '@services/movies/movies.dto';
 // import { GetMoviesParams, Order, SortMoviesBy } from '@services/movies/movies.types';
 
 import mock from './mock.json';
-import { Movie, MovieActor } from '@services/movies/movies.models';
 
 // Todo: uncomment when BE fix token
 
 // const LIMIT = 10;
 const movieService = new MovieService();
 
-export const fetchMovies = createAsyncThunk<GetMovieResponse, Partial<GetMoviesParams>>('fetchMovies', async (_params = {}) => {
+export const fetchMovies = createAsyncThunk<Pagination<MovieSummaryFromApi>, Partial<GetMoviesParams>>('fetchMovies', async (_params = {}) => {
   // Todo: uncomment when BE fix token
 
   // const res = await movieService.getMovies({ ...params, limit: LIMIT, sort: SortMoviesBy.Title, order: Order.ASC });
@@ -21,7 +22,7 @@ export const fetchMovies = createAsyncThunk<GetMovieResponse, Partial<GetMoviesP
   return mock;
 });
 
-export const refreshMovies = createAsyncThunk<GetMovieResponse, Partial<GetMoviesParams>>('refreshMovies', async (_params = {}) => {
+export const refreshMovies = createAsyncThunk<Pagination<MovieSummaryFromApi>, Partial<GetMoviesParams>>('refreshMovies', async (_params = {}) => {
   // Todo: uncomment when BE fix token
 
   // const res = await movieService.getMovies({ ...params, sort: SortMoviesBy.Title, order: Order.ASC, offset: 0 });
@@ -29,10 +30,10 @@ export const refreshMovies = createAsyncThunk<GetMovieResponse, Partial<GetMovie
   return mock;
 });
 
-export const fetchMoreMovies = createAsyncThunk<GetMovieResponse, Partial<GetMoviesParams>>('loadMoreMovies', async (_params = {}) => {
+export const fetchMoreMovies = createAsyncThunk<Pagination<MovieSummaryFromApi>, Partial<GetMoviesParams>>('loadMoreMovies', async (_params = {}) => {
   // const res = await movieService.getMovies({ ...params, limit: LIMIT, sort: SortMoviesBy.Title, order: Order.ASC });
 
-  return [] as unknown as GetMovieResponse;
+  return [] as unknown as Pagination<MovieSummaryFromApi>;
 });
 
 export const addMovie = createAsyncThunk<MovieResponse, AddMovieRequest>('addMovie', async params => {
@@ -42,7 +43,7 @@ export const addMovie = createAsyncThunk<MovieResponse, AddMovieRequest>('addMov
 });
 
 interface MoviesState {
-  data: MovieSummary[];
+  data: MovieSummaryFromApi[];
   total: number;
   offset: number;
   limit: number;

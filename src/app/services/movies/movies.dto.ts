@@ -11,7 +11,7 @@ export interface MovieFromApi {
   actors?: ActorFromApi[];
 }
 
-export type MovieSummary = Omit<MovieFromApi, 'actors'>;
+export type MovieSummaryFromApi = Omit<MovieFromApi, 'actors'>;
 
 export interface ActorFromApi {
   id: number;
@@ -22,14 +22,6 @@ export interface ActorFromApi {
 
 export interface MovieResponse {
   data: MovieFromApi;
-  status: ResponseStatus;
-}
-
-export interface GetMovieResponse {
-  data: MovieSummary[];
-  meta: {
-    total: number;
-  };
   status: ResponseStatus;
 }
 

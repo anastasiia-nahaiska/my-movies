@@ -10,7 +10,7 @@ import { useAppDispatch } from '@store/hooks';
 import { usePalette } from '@theme/usePalette.hook';
 import { useMovies } from '@app/hooks/useMovies.hook';
 import { useDebounce } from '@app/hooks/useDebounce.hook';
-import { MovieSummary } from '@services/movies/movies.dto';
+import { MovieSummaryFromApi } from '@services/movies/movies.dto';
 import { useLocalization } from '@localization/useLocalization.hook';
 import { MovieCard } from '@components/cards/movie-card/MovieCard.component';
 import { BigHeader } from '@components/headers/big-header/BigHeader.component';
@@ -60,7 +60,7 @@ export const Movies: React.FC<
     dispatch(refreshMovies({ search: debouncedQuery }));
   };
 
-  const getItemLayout = (_data: ArrayLike<MovieSummary> | null | undefined, index: number) => ({
+  const getItemLayout = (_data: ArrayLike<MovieSummaryFromApi> | null | undefined, index: number) => ({
     length: MOVIE_CARD_HEIGHT,
     offset: MOVIE_CARD_HEIGHT * index,
     index: index,
@@ -69,7 +69,7 @@ export const Movies: React.FC<
   const navigateToAddMovie = () => navigation.navigate(MainStackRoutes.AddMovie);
   const navigateToMovie = useCallback((movieId: number) => navigation.navigate(MainStackRoutes.Movie, { movieId }), []);
 
-  const renderMovieCard: ListRenderItem<MovieSummary> = useCallback(
+  const renderMovieCard: ListRenderItem<MovieSummaryFromApi> = useCallback(
     ({ item }) => <MovieCard style={{ height: MOVIE_CARD_HEIGHT }} movie={item} onMovieCardPress={navigateToMovie} />,
     [],
   );

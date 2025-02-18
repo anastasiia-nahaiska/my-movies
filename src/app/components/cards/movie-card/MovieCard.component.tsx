@@ -4,16 +4,16 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { usePalette } from '@theme/usePalette.hook';
 import { Line } from '@components/line/Line.component';
-import { MovieSummary } from '@services/movies/movies.dto';
 import { AppText, Typography } from '@components/app-text';
+import { MovieSummaryFromApi } from '@services/movies/movies.dto';
+import { useLocalization } from '@localization/useLocalization.hook';
 
 import { styles } from './movie-card.styles';
 import { BaseCard } from '../base-card/BaseCard.component';
 import { MovieCardDetail } from './movie-card-detail/MovieCardDetail.component';
-import { useLocalization } from '@localization/useLocalization.hook';
 
 interface MovieCardProp extends Omit<TouchableOpacityProps, 'onPress'> {
-  movie: MovieSummary;
+  movie: MovieSummaryFromApi;
 
   onMovieCardPress: (movieId: number) => void;
 }
