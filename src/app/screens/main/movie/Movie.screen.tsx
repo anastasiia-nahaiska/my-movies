@@ -17,6 +17,7 @@ export const Movie: React.FC<NativeStackScreenProps<MainStackParamList, MainStac
   const [movie, setMovie] = useState<MovieModel | null>(null);
 
   const { data } = useMovies();
+  const { t } = useLocalization();
 
   useEffect(() => {
     fetchMovie();
@@ -36,8 +37,6 @@ export const Movie: React.FC<NativeStackScreenProps<MainStackParamList, MainStac
       setIsLoading(false);
     }
   };
-
-  const { t } = useLocalization();
 
   return (
     <SafeAreaView style={styles.container}>

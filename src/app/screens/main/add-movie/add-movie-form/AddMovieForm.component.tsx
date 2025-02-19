@@ -147,13 +147,13 @@ export const AddMovieForm: React.FC<SignInFormProps> = ({ onSubmitPress, content
   return (
     <KeyboardAwareScrollView {...props}>
       <View style={styles.inputs}>
-        <AppText>Title:</AppText>
+        <AppText>{`${t('title')}:`}</AppText>
         <Controller name={AddMovieField.Title} control={control} render={renderTitleInput} />
-        <AppText>Year:</AppText>
+        <AppText>{`${t('year')}:`}</AppText>
         <Controller name={AddMovieField.Year} control={control} render={renderYearInput} />
-        <AppText>Format(VHS, DVD, Blu-ray):</AppText>
+        <AppText>{`${t('format')} (${Object.values(VideoFormat).join(', ')}):`}</AppText>
         <Controller name={AddMovieField.Format} control={control} render={renderFormatInput} />
-        <AppText>Actors(splitted by ,): </AppText>
+        <AppText>{`${t('actors')} (${t('splittedBy')}):`}</AppText>
         <Controller name={AddMovieField.Actors} control={control} render={renderActorsInput} />
       </View>
       <MainButton title={t('add')} style={styles.button} onPress={submitFormWithValidation} />

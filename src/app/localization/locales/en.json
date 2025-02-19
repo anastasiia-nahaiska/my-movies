@@ -11,6 +11,7 @@
   "year": "Year",
   "format": "Format",
   "actors": "Actors",
+  "title": "Title",
   "name": "Name",
   "email": "Email",
   "settings": "Settings",
@@ -22,6 +23,7 @@
   "aboutMovie": "About movie",
   "darkTheme": "Dark theme",
   "addMovie": "Add Movie",
+  "splittedBy": "splitted by ,",
   "welcome": {
     "title": "Welcome, Movie Buff!",
     "subtitle": " Your cinematic journey begins here",

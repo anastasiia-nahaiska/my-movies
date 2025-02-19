@@ -3,9 +3,9 @@ import axios, { HttpStatusCode, type AxiosInstance, type AxiosRequestConfig } fr
 // import { rootStore } from '@store/root-store';
 import { AnyObject } from '@app/types/common.types';
 import { ErrorCode } from '@app/types/statuses.types';
+// import { sessionSlice } from '@store/slices/session.slice';
 
 import { config } from './config';
-// import { sessionSlice } from '@store/slices/session.slice';
 
 export interface Headers {
   [header: string]: string | number;

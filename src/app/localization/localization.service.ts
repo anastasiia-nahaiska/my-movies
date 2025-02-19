@@ -2,9 +2,10 @@ import { getLocales } from 'expo-localization';
 import { initReactI18next } from 'react-i18next';
 import { changeLanguage as i18nextChangeLanguage, use, t as i18nextTranslation } from 'i18next';
 
+import { memory } from '@config/memory';
+
 import en from './locales/en.json';
 import uk from './locales/uk.json';
-import { memory } from '@config/memory';
 
 type ResourceKey = string | { [key: string]: ResourceKey };
 

@@ -11,9 +11,9 @@ import {
   KeyboardAwareScrollView,
   KeyboardAwareScrollViewProps,
 } from '@components/wrappers/keyboard-aware-scroll-view/KeyboardAwareScrollView.component';
+import { AnimatedAppTextInput } from '@components/inputs/animated-app-text-input/AnimatedAppTextInput.component';
 
 import { styles } from './sign-in-form.styles';
-import { AnimatedAppTextInput } from '@components/inputs/animated-app-text-input/AnimatedAppTextInput.component';
 
 enum SignInField {
   Email = 'Email',

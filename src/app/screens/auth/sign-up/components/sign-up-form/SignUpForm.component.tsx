@@ -4,6 +4,7 @@ import React, { useCallback, useMemo } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, ControllerProps, Controller } from 'react-hook-form';
 
+import { CreateUserRequest } from '@services/auth/auth.dto';
 import { useLocalization } from '@localization/useLocalization.hook';
 import { MainButton } from '@components/buttons/main-button/MainButton.component';
 import { EMAIL_REGEX, NAME_REGEX, PASSWORD_MIN_MAX_REGEX } from '@app/constants/regexes';
@@ -11,10 +12,9 @@ import {
   KeyboardAwareScrollView,
   KeyboardAwareScrollViewProps,
 } from '@components/wrappers/keyboard-aware-scroll-view/KeyboardAwareScrollView.component';
+import { AnimatedAppTextInput } from '@components/inputs/animated-app-text-input/AnimatedAppTextInput.component';
 
 import { styles } from './sign-up-form.styles';
-import { CreateUserRequest } from '@services/auth/auth.dto';
-import { AnimatedAppTextInput } from '@components/inputs/animated-app-text-input/AnimatedAppTextInput.component';
 
 enum SignUpField {
   Name = 'Name',

@@ -1,7 +1,7 @@
 import { http } from '@config/http';
+import { Movie } from '@services/movies/models/movie.model';
 import { MovieService } from '@services/movies/movies.service';
 import { movieToAdd, movieFromApi } from '@services/__mocks__/movies';
-import { Movie } from '@services/movies/models/movie.model';
 
 describe('movies service', () => {
   const error = new Error();

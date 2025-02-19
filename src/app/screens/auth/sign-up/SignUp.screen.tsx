@@ -6,11 +6,11 @@ import { AuthSackParamList, AuthStackRoutes } from '@navigation/auth-stack/auth-
 
 import { CreateUserRequest } from '@services/auth/auth.dto';
 import { AppStackRoutes } from '@navigation/app-stack.routes';
+import { useAuthService } from '@app/hooks/useAuthService.hook';
 import { useLocalization } from '@localization/useLocalization.hook';
 import { SignUpForm } from './components/sign-up-form/SignUpForm.component';
 
 import { styles } from './sign-up.styles';
-import { useAuthService } from '@app/hooks/useAuthService.hook';
 
 export const SignUp: React.FC<NativeStackScreenProps<AuthSackParamList, AuthStackRoutes.SignUp>> = ({ navigation }) => {
   const { t } = useLocalization();
