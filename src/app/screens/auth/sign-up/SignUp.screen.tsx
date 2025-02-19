@@ -7,6 +7,7 @@ import { AuthSackParamList, AuthStackRoutes } from '@navigation/auth-stack/auth-
 import { CreateUserRequest } from '@services/auth/auth.dto';
 import { AppStackRoutes } from '@navigation/app-stack.routes';
 import { useAuthService } from '@app/hooks/useAuthService.hook';
+import { showToastWithError } from '@utils/show-toast-with-error';
 import { useLocalization } from '@localization/useLocalization.hook';
 import { SignUpForm } from './components/sign-up-form/SignUpForm.component';
 
@@ -21,7 +22,7 @@ export const SignUp: React.FC<NativeStackScreenProps<AuthSackParamList, AuthStac
       await authService.signUp(params);
       navigation.dispatch(CommonActions.reset({ routes: [{ name: AppStackRoutes.MainStack }], index: 0 }));
     } catch (e) {
-      throw new Error(`${e}`);
+      showToastWithError(e, t);
     }
   };
 

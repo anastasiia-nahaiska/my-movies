@@ -4,6 +4,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { AppStackRoutes } from '@navigation/app-stack.routes';
 import { useAuthService } from '@app/hooks/useAuthService.hook';
+import { showToastWithError } from '@utils/show-toast-with-error';
 import { useLocalization } from '@localization/useLocalization.hook';
 import { DefaultHeader } from '@components/headers/default-header/DefaultHeader.component';
 import { AuthSackParamList, AuthStackRoutes } from '@navigation/auth-stack/auth-stack.routes';
@@ -20,7 +21,7 @@ export const SignIn: React.FC<NativeStackScreenProps<AuthSackParamList, AuthStac
       await authService.signIn(email, password);
       navigation.dispatch(CommonActions.reset({ routes: [{ name: AppStackRoutes.MainStack }], index: 0 }));
     } catch (e) {
-      throw new Error(`${e}`);
+      showToastWithError(e, t);
     }
   };
 

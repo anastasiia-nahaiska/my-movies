@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { useMovies } from '@app/hooks/useMovies.hook';
+import { showToastWithError } from '@utils/show-toast-with-error';
 import { useLocalization } from '@localization/useLocalization.hook';
 import { Movie as MovieModel } from '@services/movies/models/movie.model';
 import { DefaultHeader } from '@components/headers/default-header/DefaultHeader.component';
@@ -32,7 +33,7 @@ export const Movie: React.FC<NativeStackScreenProps<MainStackParamList, MainStac
 
       setMovie(fetchedMovie ?? null);
     } catch (e) {
-      throw new Error(`${e}`);
+      showToastWithError(e, t);
     } finally {
       setIsLoading(false);
     }

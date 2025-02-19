@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { sessionSlice } from './slices/session.slice';
 import { moviesSlice } from './slices/movies.slice';
+import { errorHandlingMiddleware } from './middlewares';
 
 export const rootStore = configureStore({
   reducer: {
@@ -11,7 +12,7 @@ export const rootStore = configureStore({
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }),
+    }).concat(errorHandlingMiddleware),
 });
 
 export type AppDispatch = typeof rootStore.dispatch;

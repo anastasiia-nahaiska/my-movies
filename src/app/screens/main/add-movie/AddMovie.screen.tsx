@@ -4,6 +4,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useAppDispatch } from '@store/hooks';
 import { moviesSlice } from '@store/slices/movies.slice';
 import { AddMovieRequest } from '@services/movies/movies.dto';
+import { showToastWithError } from '@utils/show-toast-with-error';
 import { useLocalization } from '@localization/useLocalization.hook';
 import { AddMovieForm } from './add-movie-form/AddMovieForm.component';
 import { DefaultHeader } from '@components/headers/default-header/DefaultHeader.component';
@@ -24,7 +25,7 @@ export const AddMovie: React.FC<NativeStackScreenProps<MainStackParamList, MainS
       dispatch(moviesSlice.actions.addMovie(params));
       navigation.goBack();
     } catch (e) {
-      throw new Error(`${e}`);
+      showToastWithError(e, t);
     }
   };
 

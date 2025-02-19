@@ -24,6 +24,15 @@
   "darkTheme": "Dark theme",
   "addMovie": "Add Movie",
   "splittedBy": "splitted by ,",
+  "httpErrors": {
+    "somethingWentWrong": "Oops, something went wrong.",
+    "badRequest": "Bad request.",
+    "unauthorized": "Unauthorized. Please log in again.",
+    "forbidden": "You don't have access.",
+    "notFound": "Not found.",
+    "networkError": "No internet connection.",
+    "econnaborted": "Request timed out."
+  },
   "welcome": {
     "title": "Welcome, Movie Buff!",
     "subtitle": " Your cinematic journey begins here",
