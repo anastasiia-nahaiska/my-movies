@@ -7,12 +7,6 @@ import { ErrorCode } from '@app/types/statuses.types';
 import { config } from './config';
 // import { sessionSlice } from '@store/slices/session.slice';
 
-export interface RequestConfig {
-  auth?: { username: string; password: string };
-  params?: AnyObject;
-  data?: AnyObject;
-}
-
 export interface Headers {
   [header: string]: string | number;
 }
@@ -43,7 +37,7 @@ export class Http {
     this.createAxiosInstance();
   }
 
-  public async get<T>(url: string, config?: RequestConfig) {
+  public async get<T>(url: string, config?: AxiosRequestConfig) {
     const response = await this.axiosInstance.get<T>(url, config);
     return response;
   }
@@ -58,7 +52,7 @@ export class Http {
     return response;
   }
 
-  public async delete<T>(url: string, config?: RequestConfig) {
+  public async delete<T>(url: string, config?: AxiosRequestConfig) {
     const response = await this.axiosInstance.delete<T>(url, config);
     return response;
   }
