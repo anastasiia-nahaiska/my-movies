@@ -3,7 +3,7 @@ jest.mock('axios', () => {
 
   return {
     ...actualStatus,
-    create: jest.fn(() => ({
+    create: jest.fn().mockImplementation(() => ({
       interceptors: {
         response: {
           use: jest.fn(),
