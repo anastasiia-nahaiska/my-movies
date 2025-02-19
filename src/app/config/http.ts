@@ -17,7 +17,7 @@ export interface Headers {
   [header: string]: string | number;
 }
 
-class Http {
+export class Http {
   private baseURL: string;
   private headers: Headers;
   private axiosInstance: AxiosInstance;
@@ -66,6 +66,9 @@ class Http {
   private createAxiosInstance() {
     this.axiosInstance = axios.create({ baseURL: this.baseURL, headers: this.headers });
 
+    // Todo: probably refactor to throw SESSION_EXPIRED value from Errors enum and create errorHandler function
+    // where showing modal will triggered and add this func to catch block in each func which do request to API.
+    // Need a piece of advice of the best practice to handle this case.
     this.axiosInstance.interceptors.response.use(
       response => {
         if (response.data?.error?.code === ErrorCode.WRONG_TOKEN) {
