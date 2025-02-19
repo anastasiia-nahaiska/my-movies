@@ -12,6 +12,7 @@ export interface Palette {
   secondaryText: ColorValue;
   disabledText: ColorValue;
   surface: ColorValue;
+  surfaceVariant: ColorValue;
   border: ColorValue;
   onPrimary: ColorValue;
   error: ColorValue;
