@@ -7,11 +7,8 @@ export const styles = StyleSheet.create({
     height: 150,
     padding: 16,
   },
-  header: {
-    gap: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+  line: {
+    opacity: 0.7,
   },
   details: {
     gap: 8,

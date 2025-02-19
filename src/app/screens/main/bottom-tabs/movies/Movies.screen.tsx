@@ -60,13 +60,16 @@ export const Movies: React.FC<
     dispatch(refreshMovies({ search: debouncedQuery }));
   };
 
-  const getItemLayout = (_data: ArrayLike<MovieSummaryFromApi> | null | undefined, index: number) => ({
-    length: MOVIE_CARD_HEIGHT,
-    offset: MOVIE_CARD_HEIGHT * index,
-    index: index,
-  });
+  const getItemLayout = useCallback(
+    (_data: ArrayLike<MovieSummaryFromApi> | null | undefined, index: number) => ({
+      length: MOVIE_CARD_HEIGHT,
+      offset: MOVIE_CARD_HEIGHT * index,
+      index: index,
+    }),
+    [],
+  );
 
-  const navigateToAddMovie = () => navigation.navigate(MainStackRoutes.AddMovie);
+  const navigateToAddMovie = useCallback(() => navigation.navigate(MainStackRoutes.AddMovie), []);
   const navigateToMovie = useCallback((movieId: number) => navigation.navigate(MainStackRoutes.Movie, { movieId }), []);
 
   const renderMovieCard: ListRenderItem<MovieSummaryFromApi> = useCallback(

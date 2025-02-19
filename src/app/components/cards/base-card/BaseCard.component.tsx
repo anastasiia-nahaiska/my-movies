@@ -1,11 +1,11 @@
-import React, { PropsWithChildren } from 'react';
+import React, { memo, PropsWithChildren } from 'react';
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
 import { usePalette } from '@theme/usePalette.hook';
 
 import { styles } from './base-card.styles';
 
-export const BaseCard: React.FC<PropsWithChildren<TouchableOpacityProps>> = ({ children, style, ...props }) => {
+export const BaseCard: React.FC<PropsWithChildren<TouchableOpacityProps>> = memo(({ children, style, ...props }) => {
   const { surface } = usePalette();
 
   return (
@@ -13,4 +13,4 @@ export const BaseCard: React.FC<PropsWithChildren<TouchableOpacityProps>> = ({ c
       {children}
     </TouchableOpacity>
   );
-};
+});

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { memo, ReactNode } from 'react';
 import { View, ViewProps } from 'react-native';
 
 import { AppText, Typography } from '@components/app-text';
@@ -11,11 +11,11 @@ interface Props extends ViewProps {
   endElement?: ReactNode;
 }
 
-export const BigHeader: React.FC<Props> = ({ title, endElement, style, ...props }) => (
+export const BigHeader: React.FC<Props> = memo(({ title, endElement, style, ...props }) => (
   <View style={[styles.container, style]}>
     <AppText typography={Typography.Heading1} {...props}>
       {title}
     </AppText>
     {endElement}
   </View>
-);
+));

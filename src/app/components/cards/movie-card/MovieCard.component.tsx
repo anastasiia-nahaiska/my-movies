@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { TouchableOpacityProps, View } from 'react-native';
 
 import { usePalette } from '@theme/usePalette.hook';
@@ -21,14 +21,14 @@ export const MovieCard: React.FC<MovieCardProp> = memo(({ movie, onMovieCardPres
   const { t } = useLocalization();
   const { disabledText } = usePalette();
 
-  const handlePress = () => {
+  const handlePress = useCallback(() => {
     onMovieCardPress(movie.id);
-  };
+  }, []);
 
   return (
     <BaseCard style={[styles.container, style]} {...props} onPress={handlePress}>
       <MovieCardHeader title={movie.title} />
-      <Line style={{ backgroundColor: disabledText, opacity: 0.7 }} />
+      <Line style={[styles.line, { backgroundColor: disabledText }]} />
       <View style={styles.details}>
         <MovieCardDetail title={`${t('year')}:`} value={movie.year.toString()} />
         <MovieCardDetail title={`${t('format')}:`} value={movie.format} />

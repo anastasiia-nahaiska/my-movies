@@ -12,6 +12,7 @@ import { IconButton } from '@components/buttons/icon-button/IconButton.component
 import { styles } from './app-text-input.styles';
 
 type InputType = 'password' | 'text' | 'search';
+
 enum EyeIconName {
   On = 'eye',
   Off = 'eye-off',

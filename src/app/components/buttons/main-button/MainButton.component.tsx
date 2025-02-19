@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleProp, TextStyle, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
 import { usePalette } from '@theme/usePalette.hook';
@@ -14,7 +14,7 @@ interface MainButtonProps extends TouchableOpacityProps {
   titleStyle?: StyleProp<TextStyle>;
 }
 
-export const MainButton: React.FC<MainButtonProps> = ({ title, type = MainButtonType.Primary, style, titleStyle, ...props }) => {
+export const MainButton: React.FC<MainButtonProps> = memo(({ title, type = MainButtonType.Primary, style, titleStyle, ...props }) => {
   const palette = usePalette();
 
   return (
@@ -24,4 +24,4 @@ export const MainButton: React.FC<MainButtonProps> = ({ title, type = MainButton
       </AppText>
     </TouchableOpacity>
   );
-};
+});

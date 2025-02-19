@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { memo, ReactNode } from 'react';
 import { StyleProp, TextStyle, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
 import { AppText } from '@components/app-text/AppText.component';
@@ -12,9 +12,9 @@ interface Props extends TouchableOpacityProps {
   endElement?: ReactNode;
 }
 
-export const TextButton: React.FC<Props> = ({ title, titleStyle, style, endElement, ...props }) => (
+export const TextButton: React.FC<Props> = memo(({ title, titleStyle, style, endElement, ...props }) => (
   <TouchableOpacity style={[styles.container, style]} {...props}>
     <AppText style={titleStyle}>{title}</AppText>
     {endElement}
   </TouchableOpacity>
-);
+));

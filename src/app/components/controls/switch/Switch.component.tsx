@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import { Pressable, PressableProps, StyleProp, ViewStyle } from 'react-native';
 import Animated, { interpolateColor, withTiming, useSharedValue, useAnimatedStyle } from 'react-native-reanimated';
 
@@ -17,7 +17,7 @@ interface Props extends PressableProps {
   style?: StyleProp<ViewStyle>;
 }
 
-export const Switch: React.FC<Props> = ({ selected = false, labelStart, labelEnd, style, ...props }) => {
+export const Switch: React.FC<Props> = memo(({ selected = false, labelStart, labelEnd, style, ...props }) => {
   const { primary, onPrimary, surface } = usePalette();
   const start = useSharedValue(selected ? RIGHT_THUMB_TO_EDGE_DISTANCE : THUMB_TO_EDGE_DISTANCE);
 
@@ -45,4 +45,4 @@ export const Switch: React.FC<Props> = ({ selected = false, labelStart, labelEnd
       {labelEnd}
     </Pressable>
   );
-};
+});
