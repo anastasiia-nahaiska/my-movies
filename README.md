@@ -1,6 +1,6 @@
-# Welcome to your Expo app 👋
+# My Movies 🎥
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+-(Preview)[https://ik.imagekit.io/1uww7gf2n/my-movies/movies_preview.webm/ik-video.mp4?updatedAt=1739760627409]
 
 ## Get started
 
